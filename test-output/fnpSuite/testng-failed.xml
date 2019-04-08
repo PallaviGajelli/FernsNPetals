@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [fnpSuite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
+  </listeners>
+  <test parallel="methods" name="parallelTest(failed)">
+    <classes>
+      <class name="fernsNPetals.PositiveTCs.functionalPositiveFlow">
+        <methods>
+          <include name="positiveFlow"/>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- fernsNPetals.PositiveTCs.functionalPositiveFlow -->
+      <class name="fernsNPetals.datadrivenTCs.searchboxDDT">
+        <methods>
+          <include name="setUp"/>
+          <include name="searchbox"/>
+        </methods>
+      </class> <!-- fernsNPetals.datadrivenTCs.searchboxDDT -->
+      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="addressform"/>
+        </methods>
+      </class> <!-- fernsNPetals.datadrivenTCs.ValidAddressForm -->
+    </classes>
+  </test> <!-- parallelTest(failed) -->
+</suite> <!-- Failed suite [fnpSuite] -->
