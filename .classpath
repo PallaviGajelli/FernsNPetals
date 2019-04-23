@@ -28,5 +28,8 @@
 	<classpathentry kind="lib" path="C:/Users/sanjaygajelli/Downloads/selenium-server-standalone-3.9.1.jar"/>
 	<classpathentry kind="lib" path="C:/Drivers/extentreports-java-2.41.2/extentreports-2.41.2.jar"/>
 	<classpathentry kind="lib" path="C:/Drivers/Apache-poi/lib/commons-compress-1.18.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Drivers/cucumber/cucumber-core-4.2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Drivers/cucumber/cucumber-junit-4.2.6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

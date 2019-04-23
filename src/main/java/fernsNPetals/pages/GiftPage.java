@@ -2,6 +2,9 @@ package fernsNPetals.pages;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +21,10 @@ public class GiftPage extends TestBase{
 	WebElement searchaddressbox;  
     @FindBy(xpath="//span[text()='Solapu']")
     WebElement firstdynamicaddress;
+    
+   
+   
+    
     @FindBy(xpath="//*[@id=\"addToCart\"]") 
     WebElement addtocartbutton;
     @FindBy(xpath="//*[@id=\"buynow\"]")    
@@ -27,12 +34,19 @@ public class GiftPage extends TestBase{
     @FindBy(xpath="//*[@id='addon']/form/div[3]/button")          
     WebElement addonbutton;
     
+    @FindBy(id="selecte_date")WebElement selectDate;
+    @FindBy(xpath="//*[@id=\"deliverydatepicker\"]/div/div/a[2]")WebElement nextmonth;
+    @FindBy(xpath="//*[@id=\"deliverydatepicker\"]/div/div/a[1]/span")WebElement previousmonth;
+ 
+    
+    
     @FindBy(xpath="//*[@id=\"check-login\"]/div/div/div/div/span")  //validation
     WebElement checklogin;
     @FindBy(xpath="//*[@id=\"sidebar\"]")                         
     WebElement deliveryDetails;
     
-    @FindBy(xpath="//*[@id=\"loginformEmailId\"]")                
+    @FindBy(xpath="//*[@id=\"loginformEmailId\"]")
+	public                
     WebElement loginEmailID;
     @FindBy(xpath="//*[@id=\"loginPassword\"]")                  
     WebElement pwd;
@@ -82,11 +96,22 @@ public class GiftPage extends TestBase{
     @FindBy(xpath="/html/body/div[5]/div[2]/div/div/div[2]/span[1]")
     WebElement yesdelete;
     
-   
+    public void clickfirstAddressintheList(WebDriver driver) throws InterruptedException {
+    	List<WebElement> list= driver.findElements(By.xpath("//div[@class='pac-item']"));
+    	list.get(0).click();
+    	Thread.sleep(4000);
+    }
     
     
     public void click(String buttonName) throws InterruptedException {
     	switch (buttonName) {
+    	case "nextmonth":nextmonth.click();
+              break;
+    	case "previousmonth":previousmonth.click();
+              break;
+    	case "selectDate":selectDate.click();
+    	Thread.sleep(2000);
+	          break;
     	case "deleteaddress":deleteaddress.click();
     	Thread.sleep(2000);
 	          break;
@@ -128,7 +153,7 @@ public class GiftPage extends TestBase{
     
     public void sendkeys(String textbox,String keysToSend) throws InterruptedException {
     	switch (textbox) {
-		
+    	
 		case "searchaddressbox":searchaddressbox.sendKeys(keysToSend);
 		Thread.sleep(3000);
 		      break;			
@@ -147,9 +172,7 @@ public class GiftPage extends TestBase{
         case "raddress":raddress.sendKeys(keysToSend);
         Thread.sleep(1000);
 		      break;
-        case "submitorderbutton":submitorderbutton.sendKeys(keysToSend);
-        Thread.sleep(1000);
-			  break;
+        
 		default : System.out.print("texbox not found to enter keysToSend");
 		Thread.sleep(1000);
 			  break;
@@ -158,12 +181,12 @@ public class GiftPage extends TestBase{
     
     public void alertValidation(String alerttype) throws InterruptedException {
     	switch (alerttype) {
-		case "pincodealert":
-			
+		
+    	case "pincodealert":
 			if(pincodealert.isDisplayed()) { 
 				  String alert=pincodealert.getText();
-				  Assert.assertEquals(alert, "Select Delivery Area to continue");
-				  if (alert=="Select Delivery Area to continue")
+				  //Assert.assertEquals(alert, "Select Delivery Area to continue");
+				  if (alert.contentEquals("Select Delivery Area to continue"))
 				  {
 			         System.out.println("right alert="+alert);
 			      } 
@@ -176,9 +199,10 @@ public class GiftPage extends TestBase{
 		
 		case "nameisrequire":
 			if(nameisrequire.isDisplayed()) { 
-				  String alert=pincodealert.getText();
-				  Assert.assertEquals(alert, "* Name is required");
-				  if (alert=="* Name is required")
+				  String alert=nameisrequire.getText();
+				  System.out.println(alert);
+				 // Assert.assertEquals(alert, "* Name is required");
+				  if (alert.contentEquals("* Name is required"))
 				   {
 			         System.out.println("right alert="+alert);
 			       } 
@@ -190,9 +214,10 @@ public class GiftPage extends TestBase{
 		          break;
 		case "addisrequire": 
 		if(addisrequire.isDisplayed()) { 
-			  String alert=pincodealert.getText();
-			  Assert.assertEquals(alert, "* Recipient's address is required");
-			  if (alert=="* Recipient's address is required")
+			  String alert=addisrequire.getText();
+			  System.out.println(alert);
+			 // Assert.assertEquals(alert, "* Recipient's address is required");
+			  if (alert.contentEquals("* Recipient's address is required"))
 			  {
 		         System.out.println("right alert="+alert);
 		       } 
@@ -204,9 +229,10 @@ public class GiftPage extends TestBase{
 	          break;
 		case "mobileisreqire":
 		if(mobileisreqire.isDisplayed()) { 
-			  String alert= pincodealert.getText();
-			  Assert.assertEquals(alert, "* Recipient’s mobile number is required.");
-			  if (alert=="* Recipient’s mobile number is required.")
+			  String alert= mobileisreqire.getText();
+			  System.out.println(alert);
+			 // Assert.assertEquals(alert, "* Recipient’s mobile number is required.");
+			  if (alert.contentEquals("* Recipient’s mobile number is required."))
 			  {
 		         System.out.println("right alert="+alert);
 		       } 
@@ -224,7 +250,8 @@ public class GiftPage extends TestBase{
 	      		System.out.println("This is valid Email ID");
 	      	     }	
 	      	loginEmailID.sendKeys(Keys.chord(Keys.CONTROL,"a",Keys.DELETE));	 
-	  			  Thread.sleep(2000);
+	  			  Thread.sleep(1000);
+	  			break;
 	  			  
 		case"deliveryDetails":
 			Boolean DeliDetai = deliveryDetails.isDisplayed();
@@ -235,9 +262,11 @@ public class GiftPage extends TestBase{
 			    	  System.out.println("Delivery Details are NOT Displyaed");
 
 			     }
-		
-		default : System.out.print(" message is not displayed");
-			break;
+			   break;
+			
+			  default : System.out.print(" message is not displayed"); 
+			  break;
+			 
     	
 	
     	

@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [fnpSuite]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
-  </listeners>
-  <test parallel="methods" name="parallelTest(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test name="Default test(failed)">
     <classes>
-      <class name="fernsNPetals.PositiveTCs.functionalPositiveFlow">
-        <methods>
-          <include name="positiveFlow"/>
-          <include name="setUp"/>
-          <include name="tearDown"/>
-        </methods>
-      </class> <!-- fernsNPetals.PositiveTCs.functionalPositiveFlow -->
-      <class name="fernsNPetals.datadrivenTCs.searchboxDDT">
+      <class name="fernsNPetals.PositiveTCs.CalenderDate">
         <methods>
           <include name="setUp"/>
-          <include name="searchbox"/>
+          <include name="selectdate"/>
         </methods>
-      </class> <!-- fernsNPetals.datadrivenTCs.searchboxDDT -->
-      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm">
-        <methods>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="addressform"/>
-        </methods>
-      </class> <!-- fernsNPetals.datadrivenTCs.ValidAddressForm -->
+      </class> <!-- fernsNPetals.PositiveTCs.CalenderDate -->
     </classes>
-  </test> <!-- parallelTest(failed) -->
-</suite> <!-- Failed suite [fnpSuite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

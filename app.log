@@ -1,0 +1,56 @@
+2019-04-15 18:57:48,194  INFO [main] loggerTest:24 - ****************************** Starting test cases execution  *****************************************
+2019-04-15 18:57:51,222  INFO [main] loggerTest:28 - launching chrome broswer
+2019-04-15 18:57:55,441  INFO [main] loggerTest:35 - entering application URL
+2019-04-15 18:57:55,442  WARN [main] loggerTest:36 - Hey this just a warning message
+2019-04-15 18:57:55,442 FATAL [main] loggerTest:37 - hey this is just fatal error message
+2019-04-15 18:57:55,443 DEBUG [main] loggerTest:38 - this is debug message
+2019-04-15 18:57:55,454  INFO [main] loggerTest:44 - ****************************** starting test case *****************************************
+2019-04-15 18:57:55,455  INFO [main] loggerTest:45 - ******************************FnP Test *****************************************
+2019-04-15 18:57:55,511  INFO [main] loggerTest:48 - FnP page title is--->Flower Delivery Online | India's No.1 Florist - Ferns N Petals
+2019-04-15 18:57:55,514  INFO [main] loggerTest:51 - ****************************** ending test case *****************************************
+2019-04-15 18:57:55,514  INFO [main] loggerTest:52 - ****************************** Fnp TitleTest *****************************************
+2019-04-15 18:57:56,166  INFO [main] loggerTest:74 - ****************************** Browser is closed *****************************************
+2019-04-15 18:57:56,171  INFO [main] loggerTest:24 - ****************************** Starting test cases execution  *****************************************
+2019-04-15 18:57:58,228  INFO [main] loggerTest:28 - launching chrome broswer
+2019-04-15 18:58:01,478  INFO [main] loggerTest:35 - entering application URL
+2019-04-15 18:58:01,478  WARN [main] loggerTest:36 - Hey this just a warning message
+2019-04-15 18:58:01,480 FATAL [main] loggerTest:37 - hey this is just fatal error message
+2019-04-15 18:58:01,481 DEBUG [main] loggerTest:38 - this is debug message
+2019-04-15 18:58:01,484  INFO [main] loggerTest:58 - ****************************** starting test case *****************************************
+2019-04-15 18:58:01,485  INFO [main] loggerTest:59 - ****************************** FnP LogoTest *****************************************
+2019-04-15 18:58:03,420  INFO [main] loggerTest:64 - ****************************** ending test case *****************************************
+2019-04-15 18:58:03,421  INFO [main] loggerTest:65 - ****************************** FnP LogoTest *****************************************
+2019-04-15 18:58:04,080  INFO [main] loggerTest:74 - ****************************** Browser is closed *****************************************
+2019-04-15 19:00:55,317  INFO [main] loggerTest:24 - ****************************** Starting test cases execution  *****************************************
+2019-04-15 19:00:58,301  INFO [main] loggerTest:28 - launching chrome broswer
+2019-04-15 19:01:02,721  INFO [main] loggerTest:35 - entering application URL
+2019-04-15 19:01:02,722  WARN [main] loggerTest:36 - Hey this just a warning message
+2019-04-15 19:01:02,722 FATAL [main] loggerTest:37 - hey this is just fatal error message
+2019-04-15 19:01:02,722 DEBUG [main] loggerTest:38 - this is debug message
+2019-04-15 19:01:02,731  INFO [main] loggerTest:44 - ****************************** starting test case *****************************************
+2019-04-15 19:01:02,732  INFO [main] loggerTest:45 - ******************************FnP Test *****************************************
+2019-04-15 19:01:02,802  INFO [main] loggerTest:48 - FnP page title is--->Flower Delivery Online | India's No.1 Florist - Ferns N Petals
+2019-04-15 19:01:02,805  INFO [main] loggerTest:51 - ****************************** ending test case *****************************************
+2019-04-15 19:01:02,806  INFO [main] loggerTest:52 - ****************************** Fnp TitleTest *****************************************
+2019-04-15 19:01:03,496  INFO [main] loggerTest:74 - ****************************** Browser is closed *****************************************
+2019-04-15 19:01:03,501  INFO [main] loggerTest:24 - ****************************** Starting test cases execution  *****************************************
+2019-04-15 19:01:05,694  INFO [main] loggerTest:28 - launching chrome broswer
+2019-04-15 19:01:08,926  INFO [main] loggerTest:35 - entering application URL
+2019-04-15 19:01:08,927  WARN [main] loggerTest:36 - Hey this just a warning message
+2019-04-15 19:01:08,929 FATAL [main] loggerTest:37 - hey this is just fatal error message
+2019-04-15 19:01:08,929 DEBUG [main] loggerTest:38 - this is debug message
+2019-04-15 19:01:08,932  INFO [main] loggerTest:58 - ****************************** starting test case *****************************************
+2019-04-15 19:01:08,932  INFO [main] loggerTest:59 - ****************************** FnP LogoTest *****************************************
+2019-04-15 19:01:09,795  INFO [main] loggerTest:64 - ****************************** ending test case *****************************************
+2019-04-15 19:01:09,796  INFO [main] loggerTest:65 - ****************************** FnP LogoTest *****************************************
+2019-04-15 19:01:10,447  INFO [main] loggerTest:74 - ****************************** Browser is closed *****************************************
+2019-04-16 10:44:10,125  INFO [main] CalenderDate:35 - ****************************** starting test case *****************************************
+2019-04-16 10:44:10,133  INFO [main] CalenderDate:36 - entering application URL
+2019-04-16 10:44:10,134  INFO [main] CalenderDate:37 - ****************************** SelectCalenderDate *****************************************
+2019-04-17 10:28:25,640  INFO [main] CalenderDate:36 - ****************************** starting test case *****************************************
+2019-04-17 10:28:25,645  INFO [main] CalenderDate:37 - entering application URL
+2019-04-17 10:28:25,646  INFO [main] CalenderDate:38 - ****************************** SelectCalenderDate *****************************************
+2019-04-17 10:28:35,431 DEBUG [main] CalenderDate:60 - this is debug message
+2019-04-17 10:28:35,432 FATAL [main] CalenderDate:61 - hey this is just fatal error message
+2019-04-17 10:28:35,432  WARN [main] CalenderDate:62 - Hey this just a warning message
+2019-04-17 10:28:35,433  INFO [main] CalenderDate:63 - this is just to give info

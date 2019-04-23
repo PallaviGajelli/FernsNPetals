@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="fnpSuite">
+<suite name="Suite">
 <listeners>
      <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
 </listeners>
-  <test parallel="methods" thread-count="3" name="Test">
+  <test parallel="classes" thread-count="5" name="Test">
     <classes>
-      <class name="fernsNPetals.PositiveTCs.functionalPositiveFlow"/>
-      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm"/>
       <class name="fernsNPetals.datadrivenTCs.searchboxDDT"/>
+      <class name="fernsNPetals.PositiveTCs.functionalPositiveFlow"/>
+      <class name="fernsNPetals.NegativeTCs.functionalNegativeFlow"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

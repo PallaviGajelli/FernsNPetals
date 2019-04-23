@@ -12,7 +12,7 @@ import java.util.Set;
 import fernsNPetals.base.TestBase;
 import fernsNPetals.pages.HomePage;
 import fernsNPetals.pages.GiftPage;
-@Listeners(fernsNPetals.extentReportListener.ExtentReporterNG.class)
+//@Listeners(fernsNPetals.extentReportListener.ExtentReporterNG.class)
 public class functionalPositiveFlow extends TestBase{
 	HomePage HomePage;
 	GiftPage GiftPage;
@@ -33,11 +33,11 @@ public class functionalPositiveFlow extends TestBase{
 	
 	@Test
 	public void positiveFlow() throws InterruptedException{
-	     HomePage=PageFactory.initElements(driver, HomePage.getClass());
-	     HomePage.searchproduct("sleeping budha");
+	      HomePage=PageFactory.initElements(driver, HomePage.getClass());
+	      HomePage.searchproduct("sleeping budha");
 		
 		
-		Set<String>IDs= driver.getWindowHandles();
+		  Set<String>IDs= driver.getWindowHandles();
 		  java.util.Iterator<String> iter=IDs.iterator();
 		  String homewindow = iter.next(); 
 		  String giftwindow = iter.next();
@@ -54,6 +54,7 @@ public class functionalPositiveFlow extends TestBase{
 		  GiftPage.click("continuebutton");
 		  GiftPage.sendkeys("pwd", prop.getProperty("pwd"));
 		  GiftPage.click("continuebutton");
+		  GiftPage.alertValidation("deliveryDetails");
 		  GiftPage.filladdToDelivery(driver,"63 pachha peth solapur", "9876543210", "chaya");
 		  //GiftPage.placeorder();
 		 // GiftPage.checkPGUrl();

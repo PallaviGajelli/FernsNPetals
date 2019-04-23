@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test name="Test(failed)">
+  <listeners>
+    <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
+  </listeners>
+  <test parallel="classes" name="Test(failed)">
     <classes>
+      <class name="fernsNPetals.NegativeTCs.functionalNegativeFlow">
+        <methods>
+          <include name="negativeFlow"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- fernsNPetals.NegativeTCs.functionalNegativeFlow -->
       <class name="fernsNPetals.PositiveTCs.functionalPositiveFlow">
         <methods>
           <include name="positiveFlow"/>

@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm">
+      <class name="fernsNPetals.PositiveTCs.CalenderDate">
         <methods>
           <include name="setUp"/>
-          <include name="addressform" invocation-numbers="1"/>
+          <include name="selectdate"/>
         </methods>
-      </class> <!-- fernsNPetals.datadrivenTCs.ValidAddressForm -->
+      </class> <!-- fernsNPetals.PositiveTCs.CalenderDate -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
