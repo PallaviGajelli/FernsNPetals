@@ -38,6 +38,7 @@ public class TC_03 extends TestBase {
 			GiftPage.navigateToCart(driver);
 			Thread.sleep(2000);
 //			7.Enter Area
+			GiftPage.searchaddressbox.sendKeys("");
 			
 //			8.Select delivery date
 //			9.Select shipping method as ‘Stanard delivery’
