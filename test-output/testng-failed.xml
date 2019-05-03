@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="fernsNPetals.PositiveTCs.CalenderDate">
+      <class name="fernsNPetals.AllFiltersInCategoryPage.TC_04">
         <methods>
-          <include name="setUp"/>
-          <include name="selectdate"/>
+          <include name="TC_04"/>
         </methods>
-      </class> <!-- fernsNPetals.PositiveTCs.CalenderDate -->
+      </class> <!-- fernsNPetals.AllFiltersInCategoryPage.TC_04 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

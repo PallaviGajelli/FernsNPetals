@@ -31,5 +31,15 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/Drivers/cucumber/cucumber-core-4.2.6.jar"/>
 	<classpathentry kind="lib" path="C:/Drivers/cucumber/cucumber-junit-4.2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sanjaygajelli/.m2/repository/org/testng/testng/6.11/testng-6.11.jar" sourcepath="C:/Users/sanjaygajelli/.m2/repository/org/testng/testng/6.11/testng-6.11-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.testng"/>
+			<attribute name="maven.artifactId" value="testng"/>
+			<attribute name="maven.version" value="6.11"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/sanjaygajelli/Downloads/selenium-server-3.9.1/selenium-3.9.1-nodeps.jar" sourcepath="/leena/src"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

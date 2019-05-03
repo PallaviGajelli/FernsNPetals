@@ -2,20 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-04-17T09:28:14Z" name="Default suite" finished-at="2019-04-17T09:28:37Z" duration-ms="22846">
+  <suite started-at="2019-05-02T20:36:05Z" name="Default suite" finished-at="2019-05-02T20:36:26Z" duration-ms="20708">
     <groups>
     </groups>
-    <test started-at="2019-04-17T09:28:14Z" name="Default test" finished-at="2019-04-17T09:28:37Z" duration-ms="22846">
-      <class name="fernsNPetals.PositiveTCs.CalenderDate">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:fernsNPetals.PositiveTCs.CalenderDate@4803b726]" started-at="2019-04-17T10:28:14Z" name="setUp" finished-at="2019-04-17T10:28:25Z" duration-ms="10913" status="PASS">
+    <test started-at="2019-05-02T20:36:05Z" name="Default test" finished-at="2019-05-02T20:36:26Z" duration-ms="20708">
+      <class name="fernsNPetals.Currency.TC_02">
+        <test-method signature="TC_02()[pri:0, instance:fernsNPetals.Currency.TC_02@7a675056]" started-at="2019-05-02T21:36:05Z" name="TC_02" finished-at="2019-05-02T21:36:26Z" duration-ms="20673" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="selectdate()[pri:0, instance:fernsNPetals.PositiveTCs.CalenderDate@4803b726]" started-at="2019-04-17T10:28:25Z" name="selectdate" finished-at="2019-04-17T10:28:37Z" duration-ms="11897" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- selectdate -->
-      </class> <!-- fernsNPetals.PositiveTCs.CalenderDate -->
+        </test-method> <!-- TC_02 -->
+      </class> <!-- fernsNPetals.Currency.TC_02 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

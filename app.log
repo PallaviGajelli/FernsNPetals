@@ -54,3 +54,19 @@
 2019-04-17 10:28:35,432 FATAL [main] CalenderDate:61 - hey this is just fatal error message
 2019-04-17 10:28:35,432  WARN [main] CalenderDate:62 - Hey this just a warning message
 2019-04-17 10:28:35,433  INFO [main] CalenderDate:63 - this is just to give info
+2019-04-29 20:18:03,093  INFO [main] CalenderDate:36 - ****************************** starting test case *****************************************
+2019-04-29 20:18:03,100  INFO [main] CalenderDate:37 - entering application URL
+2019-04-29 20:18:03,100  INFO [main] CalenderDate:38 - ****************************** SelectCalenderDate *****************************************
+2019-04-29 20:21:06,394  INFO [main] CalenderDate:36 - ****************************** starting test case *****************************************
+2019-04-29 20:21:06,400  INFO [main] CalenderDate:37 - entering application URL
+2019-04-29 20:21:06,400  INFO [main] CalenderDate:38 - ****************************** SelectCalenderDate *****************************************
+2019-04-30 09:00:24,376  INFO [main] CalenderDate:36 - ****************************** starting test case *****************************************
+2019-04-30 09:00:24,382  INFO [main] CalenderDate:37 - entering application URL
+2019-04-30 09:00:24,383  INFO [main] CalenderDate:38 - ****************************** SelectCalenderDate *****************************************
+2019-04-30 09:02:11,530  INFO [main] CalenderDate:36 - ****************************** starting test case *****************************************
+2019-04-30 09:02:11,534  INFO [main] CalenderDate:37 - entering application URL
+2019-04-30 09:02:11,535  INFO [main] CalenderDate:38 - ****************************** SelectCalenderDate *****************************************
+2019-04-30 09:02:17,162 DEBUG [main] CalenderDate:73 - this is debug message
+2019-04-30 09:02:17,163 FATAL [main] CalenderDate:74 - hey this is just fatal error message
+2019-04-30 09:02:17,163  WARN [main] CalenderDate:75 - Hey this just a warning message
+2019-04-30 09:02:17,164  INFO [main] CalenderDate:76 - this is just to give info
