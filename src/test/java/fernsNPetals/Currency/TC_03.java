@@ -3,7 +3,9 @@ package fernsNPetals.Currency;
 import java.io.IOException;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import fernsNPetals.base.TestBase;
@@ -38,16 +40,50 @@ public class TC_03 extends TestBase {
 			GiftPage.navigateToCart(driver);
 			Thread.sleep(2000);
 //			7.Enter Area
-			GiftPage.searchaddressbox.sendKeys("");
-			
+			GiftPage.searchaddressbox.sendKeys("Kondapur");
+			Thread.sleep(1000);
+			GiftPage.searchaddressbox.sendKeys(Keys.ENTER);
+			Thread.sleep(1000);
 //			8.Select delivery date
+			GiftPage.selectDate.click();
+			//js.executeScript("arguments[0].click();", GiftPage.selectDate);
+			Thread.sleep(2000);
+		    GiftPage.selectDayAfterTomorrow(driver);
 //			9.Select shipping method as ‘Stanard delivery’
+			js.executeScript("arguments[0].click();", GiftPage.StdDeliveryunderCalender);
+			
 //			10.Select time slot
+			js.executeScript("arguments[0].click();", GiftPage.TSlot12to15undercalender);
+		
 //			11.Click on ‘ADD TO CART’ button
-//			Note:Expected step1 has to be verified
+			js.executeScript("arguments[0].click();", GiftPage.addtocartbutton);
+			
+//			Note:Expected step1 has to be verified content
+			String currencycheck=GiftPage.addonpriceonaddonPage.getText();
+			
+			Assert.assertEquals(currencycheck.contains("EUR"), true);
+			System.out.println("Cart page is available with price for the product Amount price in EUR");
 //			12.Click on cotinue with one addon
+			Thread.sleep(1000);
+			GiftPage.addoncheckbox.click();
+			GiftPage.addonbutton.click();
+			Thread.sleep(1000);
 //			13.Click on the cart icon 
+			GiftPage.cartbtn.click();
 //			Note:Expected step2 has to be verified
+			String crrencycheck1=GiftPage.Amount.getText();
+			Assert.assertEquals(crrencycheck1.contains("EUR"), true);
+			System.out.println("Total Amount price is in EUR");
+			
+			String crrencycheck2=GiftPage.subtotalProduct.getText();
+			Assert.assertEquals(crrencycheck2.contains("EUR"), true);
+			System.out.println("Sub total of product price is in EUR");
+			
+			String crrencycheck3=GiftPage.subtotaladdon.getText();
+			Assert.assertEquals(crrencycheck3.contains("EUR"), true);
+			System.out.println("Sub total of addon price is in EUR");
+			
+			
 //			
 //
 //1.Cart page should available with EUR price for the product I.e

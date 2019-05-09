@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-05-02T20:36:05Z" name="Default suite" finished-at="2019-05-02T20:36:26Z" duration-ms="20708">
+  <suite started-at="2019-05-09T13:06:14Z" name="Default suite" finished-at="2019-05-09T13:06:43Z" duration-ms="28348">
     <groups>
     </groups>
-    <test started-at="2019-05-02T20:36:05Z" name="Default test" finished-at="2019-05-02T20:36:26Z" duration-ms="20708">
-      <class name="fernsNPetals.Currency.TC_02">
-        <test-method signature="TC_02()[pri:0, instance:fernsNPetals.Currency.TC_02@7a675056]" started-at="2019-05-02T21:36:05Z" name="TC_02" finished-at="2019-05-02T21:36:26Z" duration-ms="20673" status="PASS">
+    <test started-at="2019-05-09T13:06:14Z" name="Default test" finished-at="2019-05-09T13:06:43Z" duration-ms="28348">
+      <class name="fernsNPetals.MyAccount.FNP_MyAccount_TC_016">
+        <test-method signature="FNP_MyAccount_TC_016()[pri:0, instance:fernsNPetals.MyAccount.FNP_MyAccount_TC_016@7a675056]" started-at="2019-05-09T14:06:14Z" name="FNP_MyAccount_TC_016" finished-at="2019-05-09T14:06:43Z" duration-ms="28316" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_02 -->
-      </class> <!-- fernsNPetals.Currency.TC_02 -->
+        </test-method> <!-- FNP_MyAccount_TC_016 -->
+      </class> <!-- fernsNPetals.MyAccount.FNP_MyAccount_TC_016 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

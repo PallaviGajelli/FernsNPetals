@@ -7,18 +7,55 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import fernsNPetals.base.TestBase;
 
 public class CheckoutPage extends TestBase {
+	
+	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[1]/div/div/div[1]/div[1]/div[2]")
+    public WebElement registrationPage;
+	@FindBy(xpath = "//*[@id=\"reg_name\"]")
+    public WebElement regname;
+	@FindBy(xpath = "//*[@id=\"reg_mobile\"]")
+    public WebElement regmobile;
+	@FindBy(xpath = "//*[@id=\"regPassword\"]")
+    public WebElement regPassword;
+	@FindBy(xpath = "//*[@id=\"register_form\"]/div[2]/span")//Name is required
+    public WebElement Nameisrequired;
+	@FindBy(xpath = "//*[@id=\"register_form\"]/div[4]/span")//Mobile number is required
+    public WebElement Mobilenumberisrequired;
+	@FindBy(xpath = "//*[@id=\"register_form\"]/div[6]/div[2]/p")//At least 6 characters
+    public WebElement Atleast6characters;
+	@FindBy(xpath = "//*[@id=\"register_form\"]/div[6]/span")//Create password is required
+    public WebElement Createpasswordisrequired;
+	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[1]/div/div/div[1]/div[1]/div[2]/h4")
+    public WebElement RegisterPageheading;//Register
+	@FindBy(xpath = "//*[@id=\"register_form\"]/div[1]")//Welcome, we are glad you are here!
+    public WebElement Welcome;
+	@FindBy(xpath = "//*[@id=\"register_form\"]/div[5]/div/div/div/span")//edit mail id
+    public WebElement modeedit;
+	@FindBy(xpath = "//*[@id=\"check-login2\"]/div[1]/div/div/div/span")//edit mail id on login page
+    public WebElement editEmailID;
+	
+	@FindBy(xpath = "//*[@id=\"register_form\"]/div[7]/label/span[2]/span")//Remember me
+    public WebElement Remembermecheckbox;
+	
+	
+	
+	@FindBy(xpath = "//*[@id=\"card-form--cc\"]/span[1]/span[1]/span/span")
+    public WebElement PayBtnonPaymentOptions;
+	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div[1]/img")
+    public WebElement yourPhotoOnProduct;
 	
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div")
 	WebElement deleteProductatcheckout;
@@ -32,8 +69,23 @@ public class CheckoutPage extends TestBase {
     WebElement cartisEmptyMsg;//shopping_cartYour cart is empty. But it doesn't have to be
     @FindBy(xpath = "//span[text()='START SHOPPING NOW']")
     WebElement StartShoppingNowBtn;
+    @FindBy(xpath = "//*[@id=\"sidebar\"]/div[2]/div[1]/span")
+	public static WebElement TotalProductPriceonPriceDetails ;
+    @FindBy(xpath = "//*[@id=\"sidebar\"]/div[2]/div[2]/span")
+	public static WebElement shippingPriceonPriceDetails;
+    @FindBy(xpath = "//*[@id=\"sidebar\"]/div[2]/div[3]/span")
+	public static WebElement TotalPriceonPriceDetails;
     
-	
+    @FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/span/span[1]/span")
+	public WebElement productPriceonOrdernDeliveryDetailPage;
+    @FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/span/span[2]")
+	WebElement ProductqtyonDeliveryDetailPage;//x1
+                      
+    @FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/span/span/span")
+	public WebElement addonPriceonOrdernDeliveryDetailPage;
+    @FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[3]/div/div/div[2]/div[2]/span/span/span")
+	public WebElement addonPricewithimgonOrdernDeliveryDetailPage;
+    
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/span/span[1]/span")
 	WebElement MarvellousBonsaiPlantPrice;//15.11
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/span/span[2]")
@@ -41,11 +93,13 @@ public class CheckoutPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[2]")
 	public WebElement DeliveryDate;//Fri, 3rd May, 2019
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[3]/div[1]/div[2]")
-	public WebElement deliverytime;//09:00 - 21:00 Hrs
+	public WebElement deliverytime ;//09:00 - 21:00 Hrs
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[3]/div[2]/div")
 	public WebElement changebtn;
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/div[1]")
 	public WebElement addon;
+	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[3]/div/div/div[2]/div[1]")
+	public WebElement addonwithimg;
 	@FindBy(xpath = "//*[@id=\"saved-address--1\"]/ul[1]/li/span/span")
 	public static WebElement addnewaddress;
 	@FindBy(xpath = "//h5[text()='Free Message card']")
@@ -53,9 +107,9 @@ public class CheckoutPage extends TestBase {
 	@FindBy(xpath = "//span[@class='sender-info-title']")
 	public WebElement SendersDetailsheading;
 	@FindBy(xpath = "//*[@id=\"senderName\"]")
-	public WebElement senderName;
+	public WebElement  senderName;
 	@FindBy(xpath = "//*[@id=\"senderEmailId\"]")
-	public WebElement senderEmailId;
+	public WebElement  senderEmailId;
 	@FindBy(xpath = "//*[@id=\"senderPhone\"]")
 	public WebElement senderPhone;
 	
@@ -68,11 +122,11 @@ public class CheckoutPage extends TestBase {
 	public WebElement saveBtn;
 	@FindBy(xpath = "//span[text()='Message Cannot Be Empty']")
 	public WebElement MessageCannotBeEmpty;
-	@FindBy(xpath = "//span[text()='Select Message on Card']")
+	@FindBy(xpath = "//span[text()='Select Message on Card']")//this is btn
 	public WebElement SelectMessageonCard;
 	@FindBy(xpath = "//*[@id=\"messagecard-dialog\"]/div[2]/div/div[1]/div/div[2]/div[2]/div/div/div/div/ul/li[1]")
 	public WebElement SelectfirstMessage;
-	@FindBy(xpath = "//div[text()='Select Message']")
+	@FindBy(xpath = "//div[text()='Select Message']")//this is alert msg
 	public WebElement SelectMessage;
 	@FindBy(xpath = "//textarea[@id='msg_card_message']")
 	public WebElement msgoncard;
@@ -98,9 +152,9 @@ public class CheckoutPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"loginformEmailId\"]")
 	public WebElement loginEmailID;
 	@FindBy(xpath = "//*[@id=\"loginPassword\"]")
-	WebElement pwd;
+	public  WebElement pwd;
 	@FindBy(xpath = "//*[@id=\"submit-check\"]/span[1]/span[1]")
-	WebElement continuebutton;
+	public WebElement continuebutton;
 	@FindBy(xpath = "//span[@class='errorLogin']")//Enter correct email or password.
 	WebElement errorLogin;
 	
@@ -178,9 +232,12 @@ public class CheckoutPage extends TestBase {
 	String dd;
 	
 	public void selectPrefixAsMs(WebDriver driver) throws InterruptedException {
-		Prefix.click();
-		Thread.sleep(1000);
+		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();",CheckoutPage.Prefix);
+		//Prefix.click();
+		Thread.sleep(1000);
+		
 		js.executeScript("arguments[0].click();",CheckoutPage.PrefixMs);
 	}
 	
@@ -261,51 +318,30 @@ public class CheckoutPage extends TestBase {
 
 	public void click(String buttonName) throws InterruptedException {
 		switch (buttonName) {  
-		case "editsavedAddBtn":
-			editsavedAddBtn.click();
-			Thread.sleep(1000);
+		case "editsavedAddBtn":editsavedAddBtn.click();Thread.sleep(1000);
 			break;
-		case "Prefix":
-			Prefix.click();
-			Thread.sleep(1000);
+		case "Prefix":Prefix.click();Thread.sleep(1000);
 			break;
-		case "PrefixMs":
-			JavascriptExecutor js = (JavascriptExecutor)driver;
-			 js.executeScript("arguments[0].click();", PrefixMs);
-			//PrefixMs.click();
-			Thread.sleep(1000);
+		case "PrefixMs":JavascriptExecutor js = (JavascriptExecutor)driver;
+			           js.executeScript("arguments[0].click();", PrefixMs);
+			           //PrefixMs.click();
+			          Thread.sleep(1000);
+			          break;
+		case "addnewaddress":addnewaddress.click();Thread.sleep(1000);
 			break;
-		case "addnewaddress":
-			addnewaddress.click();
-			Thread.sleep(1000);
+		case "StartShoppingNowBtn":StartShoppingNowBtn.click();Thread.sleep(1000);
 			break;
-		case "StartShoppingNowBtn":
-			StartShoppingNowBtn.click();
-			Thread.sleep(1000);
+		case "deleteProductalertYesBtn":deleteProductalertYesBtn.click();Thread.sleep(1000);
 			break;
-		case "deleteProductalertYesBtn":
-			deleteProductalertYesBtn.click();
-			Thread.sleep(1000);
+		case "deleteProductalertNoBtn":deleteProductalertNoBtn.click();Thread.sleep(1000);
 			break;
-		case "deleteProductalertNoBtn":
-			deleteProductalertNoBtn.click();
-			Thread.sleep(1000);
+		case "deleteProductatcheckout":deleteProductatcheckout.click();Thread.sleep(1000);
 			break;
-		case "deleteProductatcheckout":
-			deleteProductatcheckout.click();
-			Thread.sleep(1000);
+		case "changebtn":changebtn.click();Thread.sleep(1000);
 			break;
-		case "changebtn":
-			changebtn.click();
-			Thread.sleep(1000);
+		case "continuebutton":continuebutton.click();Thread.sleep(1000);
 			break;
-		case "continuebutton":
-			continuebutton.click();
-			Thread.sleep(1000);
-			break;
-		case "submitaddressbutton":
-			submitaddressbutton.click();
-			Thread.sleep(2000);
+		case "submitaddressbutton":submitaddressbutton.click();Thread.sleep(2000);
 			break;
 
 		}
@@ -439,13 +475,17 @@ public class CheckoutPage extends TestBase {
 	
     }
 	}
+	
+	
     	
 	public void verify(String Element) {
 		
 		switch (Element) {
-		
-
-		case "loginEmailID":
+		case "registrationPage":
+			Assert.assertEquals((registrationPage.isDisplayed()), true);
+			System.out.println("registrationPage is displayed");
+			break;
+        case "loginEmailID":
 			boolean a = loginEmailID.isDisplayed();
 			Assert.assertEquals(a, true);
 			System.out.println("loginEmailID is displayed");
@@ -473,7 +513,7 @@ public class CheckoutPage extends TestBase {
 		case "paymentOptions":
 			boolean a5 = paymentOptions.isDisplayed();
 			Assert.assertEquals(a5, true);
-			System.out.println("Header 'Marvellous Bonsai Plant' is displayed");
+			System.out.println("paymentOptions is displayed");
 			break;
 		case "orderenDeliveryDetailsPage":
 			boolean a6 = orderenDeliveryDetailsPage.isDisplayed();
@@ -640,13 +680,192 @@ public class CheckoutPage extends TestBase {
 				Assert.assertEquals(a44, true);
 				System.out.println("wrong email id alert is displayed");
 				break;
-			
-		
+		    case "paymentOptionspage":
+				Assert.assertEquals((paymentOptionspage.isDisplayed()), true);
+				System.out.println("paymentOptionspage is displayed");
+				break;
+				
+		   
 		}
 	}
+	
+	public void checkCurrency(String currency) {
 		
+	String a45 = productPriceonOrdernDeliveryDetailPage.getAttribute("class");
+	Assert.assertEquals(a45.contains(currency), true);
+	System.out.println("Product price with "+currency+" price is displayed");
 	
+	String a46 = addonPriceonOrdernDeliveryDetailPage.getAttribute("class");
+	Assert.assertEquals(a46.contains(currency), true);
+	System.out.println("addon price with "+currency+" price is displayed");
 	
+	String a47 = TotalProductPriceonPriceDetails.getAttribute("class");
+	Assert.assertEquals(a47.contains(currency), true);
+	System.out.println("Total Product Price on Price Details with "+currency+" price is displayed");
 	
+	String a48 = shippingPriceonPriceDetails.getAttribute("class");
+	Assert.assertEquals(a48.contains(currency), true);
+	System.out.println("shipping Price on Price Details with "+currency+" price is displayed");
 	
+	String a49 = TotalPriceonPriceDetails.getAttribute("class");
+	Assert.assertEquals(a49.contains(currency), true);
+	System.out.println("Total Price on Price Details with "+currency+" price is displayed");
+	}	
+	
+	public void checkoutPageVerification() {
+//		Email id textbox
+	    Assert.assertEquals((loginEmailID.isDisplayed()), true);
+		System.out.println("loginEmailID is displayed");
+//		continue button
+		Assert.assertEquals((continuebutton.isDisplayed()), true);
+		System.out.println("continuebutton is displayed");
+//		Facebook link
+		Assert.assertEquals((facebooklogin.isDisplayed()), true);
+		System.out.println("facebook login is displayed");
+//		Google+ link
+		Assert.assertEquals((googlelogin.isDisplayed()), true);
+		System.out.println("google login is displayed");
+//		Order & Delivery Details
+		Assert.assertEquals((orderenDeliveryDetails.isDisplayed()), true);
+		System.out.println("ordere n Delivery Details  is displayed");
+//		Payment options
+	    Assert.assertEquals((paymentOptions.isDisplayed()), true);
+		System.out.println("paymentOptions is displayed");
+	
+	}
+	
+	public void Deliverydetailspageverification(WebDriver driver) {
+//		//view details button
+//		Assert.assertEquals((.isDisplayed()), true);
+//		System.out.println("paymentOptions is displayed");
+		
+		//Glow Your Memory Personalized Lamp quantity and price
+		Assert.assertEquals((productPriceonOrdernDeliveryDetailPage.isDisplayed()), true);
+		System.out.println("productPriceonOrdernDeliveryDetailPage is displayed");
+		Assert.assertEquals((ProductqtyonDeliveryDetailPage.isDisplayed()), true);
+		System.out.println("ProductqtyonDeliveryDetailPage is displayed");
+		//Your photo product
+		Assert.assertEquals((yourPhotoOnProduct.isDisplayed()), true);
+		System.out.println("yourPhotoOnProduct is displayed");
+		//add-on with quantity and price
+		Assert.assertEquals((addonPricewithimgonOrdernDeliveryDetailPage.isDisplayed()), true);
+		System.out.println("addonPricewithimgonOrdernDeliveryDetailPage is displayed");
+		
+		//To be delivered between Delivery date and time
+		Assert.assertEquals((DeliveryDate.isDisplayed()), true);
+		System.out.println("DeliveryDate is displayed");
+		Assert.assertEquals((deliverytime.isDisplayed()), true);
+		System.out.println("deliverytime is displayed");
+		
+		//Change button
+		Assert.assertEquals((changebtn.isDisplayed()), true);
+		System.out.println("changebtn is displayed");
+		
+		//add-on
+		Assert.assertEquals((addonwithimg.isDisplayed()), true);
+		System.out.println("addonwithimg is displayed");
+		
+		//Add Delivery address
+		Assert.assertEquals((Add_Delivery_Address.isDisplayed()), true);
+		System.out.println("Add_Delivery_Address is displayed");
+		
+		//Free Message card
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", FreeMessagecard);
+		Assert.assertEquals((FreeMessagecard.isDisplayed()), true);
+		System.out.println("FreeMessagecard is displayed");
+		
+		//senders details 
+		Assert.assertEquals((SendersDetailsheading.isDisplayed()), true);
+		System.out.println("SendersDetailsheading is displayed");
+		Assert.assertEquals((senderName.isDisplayed()), true);
+		System.out.println("senderName is displayed");
+		Assert.assertEquals((senderEmailId.isDisplayed()), true);
+		System.out.println("senderEmailId is displayed");
+		Assert.assertEquals((senderPhone.isDisplayed()), true);
+		System.out.println("senderPhone is displayed");
+		
+		//Proceed To checkout button
+//		Assert.assertEquals((Iagreetickbox.isDisplayed()), true);
+//		System.out.println("Iagreetickbox is displayed");
+		Assert.assertEquals((proceedtocheckout.isDisplayed()), true);
+		System.out.println("proceedtocheckout is displayed");
+	}
+	
+	public void Deliverydetailspageverificationwithoutaddon(WebDriver driver) {
+
+		//prouct quantity and price
+		Assert.assertEquals((productPriceonOrdernDeliveryDetailPage.isDisplayed()), true);
+		System.out.println("productPriceonOrdernDeliveryDetailPage is displayed");
+		Assert.assertEquals((ProductqtyonDeliveryDetailPage.isDisplayed()), true);
+		System.out.println("ProductqtyonDeliveryDetailPage is displayed");
+		//Your photo product
+		Assert.assertEquals((yourPhotoOnProduct.isDisplayed()), true);
+		System.out.println("yourPhotoOnProduct is displayed");
+		
+		
+		//To be delivered between Delivery date and time
+		Assert.assertEquals((DeliveryDate.isDisplayed()), true);
+		System.out.println("DeliveryDate is displayed");
+		Assert.assertEquals((deliverytime.isDisplayed()), true);
+		System.out.println("deliverytime is displayed");
+		
+		//Change button
+		Assert.assertEquals((changebtn.isDisplayed()), true);
+		System.out.println("changebtn is displayed");
+		
+		
+		//Add Delivery address
+		Assert.assertEquals((Add_Delivery_Address.isDisplayed()), true);
+		System.out.println("Add_Delivery_Address is displayed");
+		
+		//Free Message card
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", FreeMessagecard);
+		Assert.assertEquals((FreeMessagecard.isDisplayed()), true);
+		System.out.println("FreeMessagecard is displayed");
+		
+		//senders details 
+		Assert.assertEquals((SendersDetailsheading.isDisplayed()), true);
+		System.out.println("SendersDetailsheading is displayed");
+		Assert.assertEquals((senderName.isDisplayed()), true);
+		System.out.println("senderName is displayed");
+		Assert.assertEquals((senderEmailId.isDisplayed()), true);
+		System.out.println("senderEmailId is displayed");
+		Assert.assertEquals((senderPhone.isDisplayed()), true);
+		System.out.println("senderPhone is displayed");
+		
+		//Proceed To checkout button
+//		Assert.assertEquals((Iagreetickbox.isDisplayed()), true);
+//		System.out.println("Iagreetickbox is displayed");
+		Assert.assertEquals((proceedtocheckout.isDisplayed()), true);
+		System.out.println("proceedtocheckout is displayed");
+	}
+	
+	public static String RandomString()
+	{
+		int length = 5;
+		boolean useLetters = true;
+		boolean useNumbers = false;
+		String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+		// System.out.println(generatedString);
+		return generatedString;
+	}
+	
+	public boolean ReturnWelcomeCondition()
+	{
+		boolean breturn=false;
+		
+		try
+		{
+			Welcome.isDisplayed();
+			breturn = true;
+		}
+		catch(Exception ex)
+		{	
+			breturn = false;
+		}	
+		return breturn;
+	}	
+	         
 }

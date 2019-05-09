@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="fernsNPetals.AllFiltersInCategoryPage.TC_04">
+      <class name="fernsNPetals.MyAccount.FNP_MyAccount_TC_009">
         <methods>
-          <include name="TC_04"/>
+          <include name="FNP_MyAccount_TC_009"/>
         </methods>
-      </class> <!-- fernsNPetals.AllFiltersInCategoryPage.TC_04 -->
+      </class> <!-- fernsNPetals.MyAccount.FNP_MyAccount_TC_009 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -51,6 +51,8 @@ public class HomePage extends TestBase {
 	WebElement cartbtn;
 	@FindBy(xpath = "//*[@id=\"accountbtn\"]")
 	WebElement accountbtn;
+	@FindBy(xpath = "//span[@id='user-info']")
+	public WebElement usernameintheaccount;
 
 	@FindBy(xpath = "//*[@id=\"currency-sym\"]")
 	public
@@ -82,6 +84,9 @@ public class HomePage extends TestBase {
 	public void mouseHover(String Menu) {
 		Actions action = new Actions(driver);
 		switch (Menu) {
+		case "accountbtn":
+                         action.moveToElement(accountbtn).build().perform();
+                         break;
     	case "cakesmenu":
 		                 action.moveToElement(cakesmenu).build().perform();
 		                 break;
@@ -95,8 +100,14 @@ public class HomePage extends TestBase {
                          action.moveToElement(occassionsmenu).build().perform();
                          break;
     	case "currency_sym":
-            action.moveToElement(currency_sym).build().perform();
-            break;
+                         action.moveToElement(currency_sym).build().perform();
+                         break;
+    	case "personalizedmenu":
+                         action.moveToElement(personalizedmenu).build().perform();
+                         break;
+    	case "globalmenu":
+                         action.moveToElement(globalmenu).build().perform();
+                         break;
 	}
 	}
 
@@ -111,142 +122,135 @@ public class HomePage extends TestBase {
 
 	public void validation(String menuName) {
 		switch (menuName) {
-//		case "cartbtn":
-//			boolean a=cartbtn.isDisplayed();
-//			Assert.assertEquals(a, true);
-//			System.out.println("cartbtn is displayed");
-//			break;
+
 		case "cartbtn":
-			boolean a = cartbtn.isDisplayed();
-			if (a == true) {
-				System.out.println("cartbtn is displayed");
-			} else {
-				System.out.println("cartbtn is Not displayed");
-			}
-			break;
+			Assert.assertEquals((cartbtn.isDisplayed()), true);
+			System.out.println("cartbtn is displayed");
+            break;
 		case "accountbtn":
-			boolean b = accountbtn.isDisplayed();
-			if (b == true) {
-				System.out.println("accountbtn is displayed");
-			} else {
-				System.out.println("accountbtn is Not displayed");
-			}
-			break;
+			Assert.assertEquals((accountbtn.isDisplayed()), true);
+			System.out.println("cartbtn is displayed");
+            break;
 		case "currency_sym":
-			String c = currency_sym.getText();
-			if (c.equals("GBP")) {
-				System.out.println("currency GBP is Displayed");
-			} else {
-				System.out.println("currency GBP is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((currency_sym.isDisplayed()), true);
+			System.out.println("currency_sym is displayed");
+            break;
 		case "call_info":
-			boolean d = call_info.isDisplayed();
-			if (d == true) {
-				System.out.println("call_info is Displayed");
-			} else {
-				System.out.println("call_info is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((call_info.isDisplayed()), true);
+			System.out.println("call_info is displayed");
+            break;
 		case "more":
-			boolean e = more.isDisplayed();
-			if (e == true) {
-				System.out.println("more options is Displayed");
-			} else {
-				System.out.println("more options is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((more.isDisplayed()), true);
+			System.out.println("more is displayed");
+            break;
 		case "fnplogo":
-			boolean f = fnplogo.isDisplayed();
-			if (f == true) {
-				System.out.println("fnplogo is Displayed");
-			} else {
-				System.out.println("fnplogo is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((fnplogo.isDisplayed()), true);
+			System.out.println("fnplogo is displayed");
+            break;
 		case "searchbox":
-			boolean g = searchbox.isDisplayed();
-			if (g == true) {
-				System.out.println("searchbox is Displayed");
-			} else {
-				System.out.println("searchbox is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((searchbox.isDisplayed()), true);
+			System.out.println("searchbox is displayed");
+            break;
 		case "flowersmenu":
-			boolean h = flowersmenu.isDisplayed();
-			if (h == true) {
-				System.out.println("searchbox is Displayed");
-			} else {
-				System.out.println("searchbox is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((flowersmenu.isDisplayed()), true);
+			System.out.println("flowersmenu is displayed");
+            break;
 		case "cakesmenu":
-			boolean h1 = cakesmenu.isDisplayed();
-			if (h1 == true) {
-				System.out.println("cakesmenu is Displayed");
-			} else {
-				System.out.println("cakesmenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((cakesmenu.isDisplayed()), true);
+			System.out.println("cakesmenu is displayed");
+            break;
 		case "personalizedmenu":
-			boolean h2 = personalizedmenu.isDisplayed();
-			if (h2 == true) {
-				System.out.println("personalizedmenu is Displayed");
-			} else {
-				System.out.println("personalizedmenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((personalizedmenu.isDisplayed()), true);
+			System.out.println("personalizedmenu is displayed");
+            break;
 		case "plantsmenu":
-			boolean h3 = plantsmenu.isDisplayed();
-			if (h3 == true) {
-				System.out.println("plantsmenu is Displayed");
-			} else {
-				System.out.println("plantsmenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((plantsmenu.isDisplayed()), true);
+			System.out.println("plantsmenu is displayed");
+            break;
 		case "birthdaymenu":
-			boolean h4 = birthdaymenu.isDisplayed();
-			if (h4 == true) {
-				System.out.println("birthdaymenu is Displayed");
-			} else {
-				System.out.println("birthdaymenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((birthdaymenu.isDisplayed()), true);
+			System.out.println("birthdaymenu is displayed");
+            break;
 		case "othergiftsmenu":
-			boolean h5 = othergiftsmenu.isDisplayed();
-			if (h5 == true) {
-				System.out.println("othergiftsmenu is Displayed");
-			} else {
-				System.out.println("othergiftsmenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((othergiftsmenu.isDisplayed()), true);
+			System.out.println("othergiftsmenu is displayed");
+            break;
 		case "anniversarymenu":
-			boolean h6 = anniversarymenu.isDisplayed();
-			if (h6 == true) {
-				System.out.println("anniversarymenu is Displayed");
-			} else {
-				System.out.println("anniversarymenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((anniversarymenu.isDisplayed()), true);
+			System.out.println("anniversarymenu is displayed");
+            break;
 		case "occassionsmenu":
-			boolean h7 = occassionsmenu.isDisplayed();
-			if (h7 == true) {
-				System.out.println("occassionsmenu is Displayed");
-			} else {
-				System.out.println("occassionsmenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((occassionsmenu.isDisplayed()), true);
+			System.out.println("occassionsmenu is displayed");
+            break;
 		case "globalmenu":
-			boolean h8 = globalmenu.isDisplayed();
-			if (h8 == true) {
-				System.out.println("globalmenu is Displayed");
-			} else {
-				System.out.println("globalmenu is Not Displayed");
-			}
-			break;
+			Assert.assertEquals((globalmenu.isDisplayed()), true);
+			System.out.println("globalmenu is displayed");
+            break;
 			
 
 		}
+	}
+
+
+
+
+
+
+	
+	public void homepageverification(){
+	
+		Assert.assertEquals((cartbtn.isDisplayed()), true);
+		System.out.println("cartbtn is displayed");
+     
+		Assert.assertEquals((accountbtn.isDisplayed()), true);
+		System.out.println("cartbtn is displayed");
+//		* Top of the page shows following fields:   
+	    Assert.assertEquals((currency_sym.isDisplayed()), true);
+		System.out.println("currency_sym is displayed");
+		
+		Assert.assertEquals((currency_sym.getText().contentEquals("GBP")), true);
+		System.out.println("currency_sym is displayed in GBP");
+
+		Assert.assertEquals((call_info.isDisplayed()), true);
+		System.out.println("call_info is displayed");
+ 
+		Assert.assertEquals((more.isDisplayed()), true);
+		System.out.println("more is displayed");
+//		* Left side of the page shows the following fields:
+		Assert.assertEquals((fnplogo.isDisplayed()), true);
+		System.out.println("fnplogo is displayed");
+ 	
+		Assert.assertEquals((searchbox.isDisplayed()), true);
+		System.out.println("searchbox is displayed");
+//		* Header toolbar shows with following fields:
+		Assert.assertEquals((flowersmenu.isDisplayed()), true);
+		System.out.println("flowersmenu is displayed");
+ 	
+		Assert.assertEquals((cakesmenu.isDisplayed()), true);
+		System.out.println("cakesmenu is displayed");
+  
+		Assert.assertEquals((personalizedmenu.isDisplayed()), true);
+		System.out.println("personalizedmenu is displayed");
+ 
+		Assert.assertEquals((plantsmenu.isDisplayed()), true);
+		System.out.println("plantsmenu is displayed");
+ 	
+		Assert.assertEquals((birthdaymenu.isDisplayed()), true);
+		System.out.println("birthdaymenu is displayed");
+  
+		Assert.assertEquals((othergiftsmenu.isDisplayed()), true);
+		System.out.println("othergiftsmenu is displayed");
+ 
+		Assert.assertEquals((anniversarymenu.isDisplayed()), true);
+		System.out.println("anniversarymenu is displayed");
+	
+		Assert.assertEquals((occassionsmenu.isDisplayed()), true);
+		System.out.println("occassionsmenu is displayed");
+  
+		Assert.assertEquals((globalmenu.isDisplayed()), true);
+		System.out.println("globalmenu is displayed");
+       
 	}
 
 }

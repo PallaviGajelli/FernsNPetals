@@ -20,9 +20,23 @@ import org.testng.Assert;
 import fernsNPetals.base.TestBase;
 
 public class GiftPage extends TestBase {
+	
+	
 	WebDriver driver;
+	@FindBy(xpath = "//span[text()='Next Day Delivery ']")
+	public WebElement NextDayDelivery;
+	
+	
+	@FindBy(xpath = "//*[@id=\"personal-image\"]/div/div")//also chngephoto btn
+	public WebElement selectPhoto;
+	@FindBy(xpath = "//*[@id=\"img-size\"]")
+	public WebElement ImgSizeErrorMsg;
+	
+	
 	@FindBy(xpath = "//*[@id=\"destlookup\"]")
 	public WebElement searchaddressbox;
+	@FindBy(xpath = "/html/body/div[4]")
+	public WebElement addressSuggestions;
 	@FindBy(xpath = "//span[text()='Solapu']")
 	public WebElement firstdynamicaddress;
 	@FindBy(xpath = "//span[text()='Hyderabad, Telangana, India']")
@@ -36,13 +50,16 @@ public class GiftPage extends TestBase {
 	public WebElement buynowbutton;
     @FindBy(xpath = "//*[@id=\"FNP_ADDON_ROOT_INDIA\"]/ul/li[5]/label/div/span")
 	public WebElement addoncheckbox;
+    @FindBy(xpath = "//*[@id=\"FNP_ADDON_ROOT_INDIA\"]/ul/li[5]/figcaption/span[2]")
+	public WebElement addonpriceonaddonPage;
+    
 	@FindBy(xpath = "//*[@id='addon']/form/div[3]/button")
-	WebElement addonbutton;
+	public WebElement addonbutton;
 	@FindBy(xpath = "//*[@id=\"addon\"]/form/div[3]/button/span")
-	WebElement withoutaddonbutton;
+	public WebElement withoutaddonbutton;
 
-	@FindBy(id = "selecte_date")
-	WebElement selectDate;
+	@FindBy(xpath="//*[@id=\"selecte_date\"]")
+	public WebElement selectDate;
 	@FindBy(xpath = "//*[@id=\"deliverydatepicker\"]/div/div/a[2]")
 	WebElement nextmonth;
 	@FindBy(xpath = "//*[@id=\"deliverydatepicker\"]/div/div/a[1]/span")
@@ -101,65 +118,97 @@ public class GiftPage extends TestBase {
 	WebElement yesdelete;
 
 	@FindBy(xpath = "//*[@id=\"today\"]/ul/li[2]/div[1]")
-	public static WebElement FreeDelivery;
+	public static WebElement FreeDelivery;//under today
+	@FindBy(xpath = "//*[@id=\"today\"]/ul/li[1]/div[1]")
+	public static WebElement StdDeliveryunderToday;
 	
-	@FindBy(xpath = "//div[@class='item-heading product-name']")
+	@FindBy(xpath = "//*[@id=\"selecte_date-tb\"]/ul/li[2]/div[1]")
+	public static WebElement StdDeliveryunderCalender;
+	@FindBy(xpath = "//*[@id=\"selecte_date-tb\"]/ul/li[2]/div[2]/ul/li[2]")
+	public static WebElement TSlot12to15undercalender;
+	
+	
+	@FindBy(xpath = "//div[@class='item-heading product-name']")//side heading
 	public WebElement itemheadingproductname;
 	@FindBy(xpath = "//span[@class='curr-symbol']")
 	public WebElement currsymbol;
+	@FindBy(xpath = "//*[@id=\"breadcrumbs\"]/div/span[2]")
+	public WebElement TopHeadingProductName;
 	
-	
+	@FindBy(xpath = "//*[@id=\"breadcrumbs\"]/div/span[3]")//not applicable for all
+	public WebElement TopHeaderOnthePic;
+	@FindBy(xpath = "/html/body/main/div[2]/div/div[1]/div/div/div[2]/div/div[1]")//side heading
+	public WebElement sideheadernextToPic;
 	@FindBy(xpath = "//*[@id=\"breadcrumbs\"]/div/span[3]")
-	WebElement H_Marvellous_Bonsai_Plant;
+	public WebElement H_Marvellous_Bonsai_Plant;
 	@FindBy(xpath = "/html/body/main/div[2]/div/div[1]/div/div/div[2]/div/div[2]/span[2]")
-	WebElement Reviews;
+	public WebElement Reviews;
 	@FindBy(xpath = "//*[@id=\"productfrm\"]/div[1]")
-	WebElement Cost;
+	public WebElement Cost;
 	@FindBy(xpath = "/html/body/main/div[2]/div/div[1]/div/div/div[2]/div/div[1]")
-	WebElement H2_Marvellous_Bonsai_Plan;
+	public WebElement H2_Marvellous_Bonsai_Plan;
 
 	@FindBy(xpath = "//*[@id=\"productfrm\"]/div[3]/a")
-	WebElement View_Product_Details;
+	public WebElement View_Product_Details;
 
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/ul[1]/li/div[2]/span")
-	WebElement Marvellous_Bonsai_Plant_AddedToCart;
+	public WebElement Marvellous_Bonsai_Plant_AddedToCart;
 	// @FindBy(xpath = "//span[text()='2 Bournville with gift wraping']")
 	// WebElement addonAddedToCart;
 	@FindBy(xpath = "//span[text()='2 Bournville with gift wraping']")
 	WebElement addonAddedToCart;
 
 	@FindBy(xpath = "//*[@id=\"datetimeshipping\"]")
-	WebElement datetimeshipping;
+	public WebElement datetimeshipping;
 	@FindBy(xpath = "//*[@id=\"datetimelink\"]")
-	WebElement SelectDeliveryDate;
-
-	@FindBy(xpath = "//*[@id=\"delete-item_0\"]/i")
-	WebElement delete_item_0;
+	public WebElement SelectDeliveryDate;
+	@FindBy(xpath = "//a[@class='ui-state-default ui-state-active']")
+	public WebElement allreadySelectedDate;
+	
+	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/ul[1]/li/div[2]/span")
+	public WebElement product_AddedToCart;
+	@FindBy(xpath = "//*[@id=\"delete-item_0\"]/i")// delet icon
+	public WebElement delete_item_0;
 	@FindBy(xpath = "//*[@id=\"delete-item_1\"]/i")
 	WebElement delete_item_1;
 	@FindBy(xpath = "//*[@id=\"cart-button\"]/button") // button[@class='cart-proceed']
-	WebElement proceedToCheckoutinTheCartbtn;
+	public WebElement proceedToCheckoutinTheCartbtn;
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/div[2]/span")
 	WebElement SendTo;
-	@FindBy(xpath = "//span[@class=\"addon-quantity\"]")
+	@FindBy(xpath = "//span[@class='location-name']")
+	WebElement SendTowithoutaddon;
+	@FindBy(xpath = "//span[@class=\"addon-quantity\"]")//this is addon qty
 	WebElement Quantity;
+	@FindBy(xpath = "//span[@class=\"addon-quantity\"]")
+	WebElement addonQuantity;
+//	@FindBy(xpath = "")
+//	WebElement productQuantity;
 	@FindBy(xpath = "//*[@id=\"viewcart\"]/div[2]/div[3]/div[1]/span[2]") // GBP 19.75
-	WebElement Amount;
+	public WebElement Amount;
+	@FindBy(xpath = "//*[@id=\"viewcart\"]/div[2]/div[3]/div[1]/span[2]/span") // GBP 
+	public WebElement cartTotalCurrency;
+	                  
+	                  
+	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/ul/li/div[2]/div/span[2]") // GBP 15.11
+	public WebElement subtotalProductwithoutaddon;
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/ul[1]/li/div[2]/div/span[2]") // GBP 15.11
-	WebElement subtotalProduct;
+	public WebElement subtotalProduct;
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/ul[2]/li/div[2]/div/span[2]") // GBP 4.64
-	WebElement subtotaladdon;
-	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/div[3]")
+	public WebElement subtotaladdon;
+	@FindBy(xpath = "//span[@class='cart-timeslot']")
 	WebElement shippingChargesincart;
 	@FindBy(xpath = "//*[@id=\"cartbtn\"]/span[1]/i")
-	WebElement cartbtn;
-
+	public WebElement cartbtn;
+	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/div[3]/div/img")
+	public WebElement selectedPhotointhecart;
+	
+// /html/body/div[1]/div
 	@FindBy(xpath = "//div[@class='delete-dialog']")
-	WebElement deletedialog;
+	public WebElement deletedialog;
 	@FindBy(xpath = "//button[@class='del-button opened']")
-	WebElement deleteYesBtn;
+	public WebElement deleteYesBtn;
 	@FindBy(xpath = "//p[text()='Your cart is empty']")
-	WebElement urCartisEmpty;
+	public WebElement urCartisEmpty;
 	String dd;
 
 //	  public void scrollDownToElement(WebElement Element) { 
@@ -198,8 +247,9 @@ public class GiftPage extends TestBase {
 
 	public void clickfirstAddressintheList(WebDriver driver) throws InterruptedException {
 		List<WebElement> list = driver.findElements(By.xpath("//div[@class='pac-item']"));
+		Thread.sleep(1000);
 		list.get(0).click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 	}
 	
 
@@ -474,10 +524,11 @@ public class GiftPage extends TestBase {
 				System.out.println("you are at other than PGurl ");
 			}
 	}
-  
+   
+  //this is login page
 	 public void VerifyCheckoutPage(WebDriver driver) {
-	   
-		boolean url=driver.getCurrentUrl().contentEquals("https://www.fnp.com/control/checkout-page-rj/#/checkout-page");
+	                                                 
+		boolean url=driver.getCurrentUrl().contains("https://www.fnp.com/control/checkout-page-rj/#/checkout-page");
 	    Assert.assertEquals(url, true);
 		if(url==true)
 	    {
@@ -487,6 +538,13 @@ public class GiftPage extends TestBase {
 	    }
 	  
   }
+	                                                        
+	 public void verifyGiftPageUrl(WebDriver driver,String Product) {
+		 Assert.assertEquals((driver.getCurrentUrl().contains("https://www.fnp.com/usa/gift/"+Product+"?")), true);
+		 System.out.println("Browser is navigateing to Gift Booking window :"+driver.getCurrentUrl());
+	 }
+	 
+	
     
 
 	public void scrooldownTo(WebDriver driver, String element) {
@@ -523,12 +581,17 @@ public class GiftPage extends TestBase {
 		}
 
 	}
+	
 
 	public void vrify(String Element) throws InterruptedException {
 		switch (Element) {
-	
-
-		case "H_Marvellous_Bonsai_Plant":
+		
+		case "ImgSizeErrorMsg":
+		    Assert.assertEquals((ImgSizeErrorMsg.isDisplayed()), true);
+		    Assert.assertEquals((ImgSizeErrorMsg.getText()), "File size between 100KB - 10MB. Only JPG or PNG.");
+		    System.out.println("Browser is displaying error message 'File size between100KB-10MB.only JPG or PNG");
+		    break;
+        case "H_Marvellous_Bonsai_Plant":
 			boolean a = H_Marvellous_Bonsai_Plant.isDisplayed();
 			Assert.assertEquals(a, true);
 			System.out.println("Header 'Marvellous Bonsai Plant' is displayed");
@@ -579,6 +642,10 @@ public class GiftPage extends TestBase {
 			Assert.assertEquals(a10, true);
 			String a11 = Marvellous_Bonsai_Plant_AddedToCart.getText();
 			System.out.println("Product Added To Cart is :" + a11);
+			break;
+		case "product_AddedToCart":
+			Assert.assertEquals((product_AddedToCart.isDisplayed()), true);
+			System.out.println("Product Added To Cart is :" +(product_AddedToCart.getText()));
 			break;
 		case "addonAddedToCart":
 			boolean a12 = addonAddedToCart.isDisplayed();
@@ -633,17 +700,10 @@ public class GiftPage extends TestBase {
 			break;
 
 		case "deletedialog":
-			boolean a23 = deletedialog.isDisplayed();
-			Assert.assertEquals(a23, true);
+			Assert.assertEquals((deletedialog.isDisplayed()), true);
 			System.out.println("delete dialog box is displayed");
-			System.out.println(deletedialog.getText());
-			boolean a24 = deletedialog.getText().contentEquals("Delete this Item?\nNOYES");
-			// String a24=deletedialog.getText();
-			try {
-				Assert.assertEquals(a24, true);
-			} catch (Exception e) {
-				System.out.println("Exception occured is :" + e);
-			}
+			Assert.assertEquals((deletedialog.getText().contentEquals("Delete this Item?\nNOYES")), true);
+			System.out.println("msg displayed on the alert msg:"+(deletedialog.getText()));
 			break;
 		case "urCartisEmpty":
 			boolean a25 = urCartisEmpty.isDisplayed();
@@ -661,22 +721,74 @@ public class GiftPage extends TestBase {
 			System.out.println(Element + "Element is missing");
 
 		}
-		
-		
-
-//		public void vrify(String Element,String addon) {
-//		switch (Element)
-//		case "addonAddedToCart":
-//			
-//			boolean a12=addonAddedToCart.isDisplayed();
-//			Assert.assertEquals(a12, true);
-//			String a13=addonAddedToCart.getText();
-//			
-//			System.out.println("addon Added To Cart is :"+a13);
-//		    break;
-//			
-//		}
-
 	}
+       
+		public void giftwindowVerification(String ProductName) {
+		
+			
+			//Assert.assertEquals(TopHeaderOnthePic.isDisplayed(), true);
+			Assert.assertEquals((TopHeaderOnthePic.getText()),""+ProductName);
+			System.out.println("Top Header On the Pic is displayed:"+TopHeaderOnthePic.getText());
+			
+			
+		
+			//Assert.assertEquals(sideheadernextToPic.isDisplayed(), true);
+			Assert.assertEquals((sideheadernextToPic.getText()), ProductName);
+			System.out.println("side header next To Pic is displayed:"+sideheadernextToPic.getText());
+			
+		
+			Assert.assertEquals(Cost.isDisplayed(), true);
+			System.out.println("cost of 'Marvellous Bonsai Plant' is displayed");
+	
+			Assert.assertEquals(Reviews.isDisplayed(), true);
+			System.out.println("Reviews for 'Marvellous Bonsai Plant' is displayed");
+		
+			Assert.assertEquals(addtocartbutton.isDisplayed(), true);
+			System.out.println("add to cart button is displayed");
+		
+			Assert.assertEquals(buynowbutton.isDisplayed(), true);
+			System.out.println("buynowbutton is displayed");
+		
+			Assert.assertEquals(searchaddressbox.isDisplayed(), true);
+			System.out.println("searchaddressbox is displayed");
+		
+	}
+		
+		public void cartverification(String Product) {
+		////////product name
+			Assert.assertEquals(product_AddedToCart.getText().contains(Product), true);
+			System.out.println("product name is displayed in the cart");
+			
+			Assert.assertEquals(delete_item_0.isDisplayed(), true);
+			System.out.println("delete item icon is displayed in the cart");
+			////////////continue shopping btn
+//			Assert.assertEquals(.isDisplayed(), true);
+//			System.out.println("continue shopping btn is displayed in the cart");
+		
+			Assert.assertEquals(proceedToCheckoutinTheCartbtn.isDisplayed(), true);
+			System.out.println("proceed To Checkout in The Cartbtn is displayed in the cart");
+	
+			Assert.assertEquals(SendTowithoutaddon.isDisplayed(), true);
+			System.out.println("Send To Address is displayed in the cart");
+		
+//			Assert.assertEquals(productQuantity.isDisplayed(), true);
+//			System.out.println(" Product Quantity is displayed in the cart");
+	
+			Assert.assertEquals(Amount.isDisplayed(), true);
+			System.out.println("Amount is displayed in the cart");
+		
+			Assert.assertEquals(subtotalProductwithoutaddon.isDisplayed(), true);
+			System.out.println("sub total of Product is displayed in the cart");
+		
+//			Assert.assertEquals(subtotaladdon.isDisplayed(), true);
+//			System.out.println("sub total of th addon is displayed in the cart");
+			
+			Assert.assertEquals(shippingChargesincart.isDisplayed(), true);
+			System.out.println("shipping Charges in cart is displayed");
+	
+		}
+		
+
+
 
 }
