@@ -24,12 +24,9 @@ public class TC_02 extends TestBase {
 			initialization();
 			HomePage HomePage = new HomePage();
 			HomePage = PageFactory.initElements(driver, HomePage.getClass());
-			GiftPage GiftPage = new GiftPage();
-			GiftPage = PageFactory.initElements(driver, GiftPage.getClass());
 			FlowersPage FlowersPage = new FlowersPage();
 			FlowersPage = PageFactory.initElements(driver, FlowersPage.getClass());
-			CheckoutPage CheckoutPage = new CheckoutPage();
-			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
+			
 //				2.Mouse over Anniversary link
 			HomePage.mouseHover("anniversarymenu");
 			FlowersPage.anniversary_flowers.click();

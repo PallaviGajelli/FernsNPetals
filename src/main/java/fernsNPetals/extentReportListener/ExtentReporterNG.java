@@ -1,6 +1,7 @@
 package fernsNPetals.extentReportListener;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,14 +19,21 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class ExtentReporterNG implements IReporter {
-	private ExtentReports extent;
+import fernsNPetals.base.TestBase;
 
+public class ExtentReporterNG extends TestBase implements IReporter {
+	public static ExtentReports extent;
+	public static String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()).toString();
+	public static String reportLocation = "/FernsNPetals/ExtentReports"+ TimeStamp + ".html";
+//	extent.setSystemInfo("Tester Name", "Pallavi");
+//	extent.setSystemInfo("Website", "FernsNpetals");
+	
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
 			String outputDirectory) {
-		extent = new ExtentReports(outputDirectory + File.separator
-				+ "Extent.html", true);
-
+//		extent = new ExtentReports(outputDirectory + File.separator
+//				+ "newExtent.html", true);
+		extent = new ExtentReports("C:\\Users\\sanjaygajelli\\eclipse-workspace\\FernsNPetals\\ExtentReports"+ TimeStamp + ".html", true);
+	
 		for (ISuite suite : suites) {
 			Map<String, ISuiteResult> result = suite.getResults();
 

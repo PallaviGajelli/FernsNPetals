@@ -44,11 +44,11 @@ public class TestBase {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--disable-notifications");
 			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\sanjaygajelli\\Downloads\\chromedriver_win32\\chromedriver.exe");
+					"C:\\Drivers\\Selenium\\chromedriver_win32\\chromedriver.exe");
 			driver = new ChromeDriver(options);
 		} else if (browserName.equals("FF")) {
 			System.setProperty("webdriver.gecko.driver",
-					"C:\\Users\\sanjaygajelli\\Downloads\\geckodriver-v0.24.0-win64\\geckodriver.exe");
+					"C:\\Drivers\\Selenium\\geckodriver-v0.24.0-win64\\geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 
@@ -75,16 +75,18 @@ public class TestBase {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--disable-notifications");
 			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\sanjaygajelli\\Downloads\\chromedriver_win32\\chromedriver.exe");
+					"C:\\Drivers\\Selenium\\chromedriver_win32\\chromedriver.exe");
 			driver = new ChromeDriver(options);
 		} else if (browserName.equals("FF")) {
 			System.setProperty("webdriver.gecko.driver",
-					"C:\\Users\\sanjaygajelli\\Downloads\\geckodriver-v0.24.0-win64\\geckodriver.exe");
+					"C:\\Drivers\\Selenium\\geckodriver-v0.24.0-win64\\geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 
 		driver.get(url);
 
 	}
+	
+	
 	
 }

@@ -9,13 +9,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 
 
+//@Listeners(fernsNPetals.extentReportListener.ExtentReporterNG.class)
 public class loggerTest {
 	
 	WebDriver driver;
+	static ExtentTest logger;//log in to report
+    static ExtentReports report;//set sys info
 	Logger log = Logger.getLogger(loggerTest.class);
 	
 	
@@ -23,7 +29,7 @@ public class loggerTest {
 	public void setup(){
 		log.info("****************************** Starting test cases execution  *****************************************");
 
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\sanjaygajelli\\Downloads\\chromedriver_win32\\chromedriver.exe");	
+		System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Selenium\\chromedriver_win32\\chromedriver.exe");	
 		driver = new ChromeDriver(); 
 		log.info("launching chrome broswer");
 		driver.manage().window().maximize();

@@ -13,12 +13,9 @@ import fernsNPetals.base.TestBase;
 import fernsNPetals.pages.HomePage;
 import fernsNPetals.pages.GiftPage;
 //@Listeners(fernsNPetals.extentReportListener.ExtentReporterNG.class)
-public class functionalPositiveFlow extends TestBase{
-	HomePage HomePage;
-	GiftPage GiftPage;
-   
-	
-	public functionalPositiveFlow() {
+public class TC_02 extends TestBase{
+
+	public TC_02() {
 		super();
 	}
 	
@@ -26,13 +23,11 @@ public class functionalPositiveFlow extends TestBase{
 	@BeforeMethod
 	public void setUp() {
 		initialization();
-		HomePage = new HomePage();
-		GiftPage = new GiftPage();
-	
 	}
 	
 	@Test
-	public void positiveFlow() throws InterruptedException{
+	public static void positiveFlow() throws InterruptedException{
+		  HomePage HomePage = new HomePage();
 	      HomePage=PageFactory.initElements(driver, HomePage.getClass());
 	      HomePage.searchproduct("sleeping budha");
 		
@@ -43,6 +38,7 @@ public class functionalPositiveFlow extends TestBase{
 		  String giftwindow = iter.next();
 		 		  
 		  driver.switchTo().window(giftwindow);
+		  GiftPage GiftPage = new GiftPage();
 		  GiftPage=PageFactory.initElements(driver, GiftPage.getClass());
 		  GiftPage.sendkeys("searchaddressbox","solapu");
 		  GiftPage.click("firstdynamicaddress");
@@ -56,8 +52,6 @@ public class functionalPositiveFlow extends TestBase{
 		  GiftPage.click("continuebutton");
 		  GiftPage.alertValidation("deliveryDetails");
 		  GiftPage.filladdToDelivery(driver,"63 pachha peth solapur", "9876543210", "chaya");
-		  //GiftPage.placeorder();
-		 // GiftPage.checkPGUrl();
 	}
 		  
 		

@@ -28,29 +28,34 @@ public class Fnp_Plants_012 extends TestBase{
 //	2.Click on the Plants  link
 		HomePage.mouseHover("plantsmenu");
 //	3.Click on Bonsai Plants link 
-		BonsaiPlants.click("BonsaiPlants");
-//	4.Click on Bonsai Beauty
+		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//	4.Click on Bonsai Beauty
 		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 //	5.Enter Area/pincode in the texbox
 		GiftPage.navigateToCart(driver);
-		GiftPage.sendkeys("searchaddressbox", "hyderabad");
+		Thread.sleep(2000);
+		GiftPage.searchaddressbox.sendKeys("hyderabad"); 
 //	6.Select suggestions under the textbox
 		GiftPage.clickfirstAddressintheList(driver);
 //	7.Click on Change Date Link
-		GiftPage.click("SelectDeliveryDate");
+		Thread.sleep(2000);
+		GiftPage.datetimeshipping.click();
 //	8.Select Delivery date
 		GiftPage.selectDayAfterTomorrow(driver);
 		Thread.sleep(2000);
 //	9.Click on Buy Now button
-		GiftPage.click("buynowbutton");
+		GiftPage.buynowbutton.click();
+		Thread.sleep(2000);
 //	10.Click on Continue Without Addon
-		GiftPage.click("withoutaddonbutton");
+		GiftPage.withoutaddonbutton.click();
+		Thread.sleep(1000);
 //	*Note:Expected step1 has to be verified
 //	
 //	1.Browser should navigate to Login/Sign
 //	 up page
 	GiftPage.VerifyCheckoutPage(driver);
-	driver.quit();
+	//driver.quit();
 }
 }

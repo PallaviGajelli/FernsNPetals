@@ -47,7 +47,7 @@ public class GiftPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"addToCart\"]")
 	public static WebElement addtocartbutton;
 	@FindBy(xpath = "//*[@id=\"buynow\"]")
-	public WebElement buynowbutton;
+	public static WebElement buynowbutton;
     @FindBy(xpath = "//*[@id=\"FNP_ADDON_ROOT_INDIA\"]/ul/li[5]/label/div/span")
 	public WebElement addoncheckbox;
     @FindBy(xpath = "//*[@id=\"FNP_ADDON_ROOT_INDIA\"]/ul/li[5]/figcaption/span[2]")
@@ -65,7 +65,9 @@ public class GiftPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"deliverydatepicker\"]/div/div/a[1]/span")
 	WebElement previousmonth;
 
-	@FindBy(xpath = "//i[@class='material-icons type-icon info-color']") // validation
+//	@FindBy(xpath = "//i[@class='material-icons type-icon info-color']") // validation
+//	public WebElement checklogin;
+	@FindBy(xpath = "//span[text()='info']") // validation
 	public WebElement checklogin;
 	@FindBy(xpath = "//*[@id=\"sidebar\"]")
 	WebElement deliveryDetails;
@@ -73,49 +75,49 @@ public class GiftPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"loginformEmailId\"]")
 	public WebElement loginEmailID;
 	@FindBy(xpath = "//*[@id=\"loginPassword\"]")
-	WebElement pwd;
+	public WebElement pwd;
 	@FindBy(xpath = "//*[@id=\"submit-check\"]/span[1]/span[1]")
-	WebElement continuebutton;
+	public WebElement continuebutton;
 
 	@FindBy(xpath = "//*[@id=\"saved-address--1\"]/h5")
 	public WebElement Add_Delivery_Address;
 	@FindBy(xpath = "//*[@id=\"rNameId-1\"]")
 	public WebElement rname;
 	@FindBy(xpath = "//*[@id=\"rMobileId-1\"]")
-	WebElement rmobileno;
+	public WebElement rmobileno;
 	@FindBy(xpath = "//*[@id=\"rAddressId-1\"]")
-	WebElement raddress;
+	public WebElement raddress;
 
 	// @FindBy(xpath="//*[@id=\"remailId-1\"]")
 	// WebElement rEmailid;//optional
 
 	@FindBy(xpath = "//*[@id=\"datetimelink\"]")
-	WebElement deliverydate;
+	public WebElement deliverydate;
 	@FindBy(xpath = "//*[@id=\"save-address-btn-1\"]/span[1]/span[1]")
-	WebElement submitaddressbutton;
+	public WebElement submitaddressbutton;
 	@FindBy(css = "input.contains('hello')")
-	WebElement Iagreetickbox;
+	public WebElement Iagreetickbox;
 	// @FindBy(xpath="//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[2]/div/label/span[1]/span[1]/input")
 	// WebElement Iagreetickbox;
 	@FindBy(xpath = "//*[@id=\"proceed-to-checkout\"]/span[1]/span[1]")
-	WebElement submitorderbutton;
+	public WebElement submitorderbutton;
 
 	@FindBy(xpath = "//*[@id=\"dateAlert\"]")
-	WebElement deliverydatealert;
+	public WebElement deliverydatealert;
 	@FindBy(xpath = "//*[@id=\"pincodeAlert\"]") // Select Delivery Area to continue
-	WebElement pincodealert;
+	public WebElement pincodealert;
 	@FindBy(xpath = "//*[@id=\"addressform-1\"]/div[1]/div[2]/span") // * Name is required
-	WebElement nameisrequire;
+	public WebElement nameisrequire;
 	@FindBy(xpath = "//*[@id=\"addressform-1\"]/div[3]/span") // * Recipient's address is required
-	WebElement addisrequire;
+	public WebElement addisrequire;
 	@FindBy(xpath = "//*[@id=\"addressform-1\"]/div[8]/div/span") // * Recipient’s mobile number is required.
-	WebElement mobileisreqire;
+	public WebElement mobileisreqire;
 
 	// @FindBy(className="delete-address")
 	@FindBy(xpath = "//*[@id=\"saved-address--1\"]/ul[2]/li/div[2]/div/p[2]")
-	WebElement deleteaddress;
+	public WebElement deleteaddress;
 	@FindBy(xpath = "/html/body/div[5]/div[2]/div/div/div[2]/span[1]")
-	WebElement yesdelete;
+	public WebElement yesdelete;
 
 	@FindBy(xpath = "//*[@id=\"today\"]/ul/li[2]/div[1]")
 	public static WebElement FreeDelivery;//under today
@@ -156,7 +158,7 @@ public class GiftPage extends TestBase {
 	// @FindBy(xpath = "//span[text()='2 Bournville with gift wraping']")
 	// WebElement addonAddedToCart;
 	@FindBy(xpath = "//span[text()='2 Bournville with gift wraping']")
-	WebElement addonAddedToCart;
+	public WebElement addonAddedToCart;
 
 	@FindBy(xpath = "//*[@id=\"datetimeshipping\"]")
 	public WebElement datetimeshipping;
@@ -170,23 +172,25 @@ public class GiftPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"delete-item_0\"]/i")// delet icon
 	public WebElement delete_item_0;
 	@FindBy(xpath = "//*[@id=\"delete-item_1\"]/i")
-	WebElement delete_item_1;
+	public WebElement delete_item_1;
 	@FindBy(xpath = "//*[@id=\"cart-button\"]/button") // button[@class='cart-proceed']
 	public WebElement proceedToCheckoutinTheCartbtn;
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/div[2]/span")
-	WebElement SendTo;
+	public WebElement SendTo;
 	@FindBy(xpath = "//span[@class='location-name']")
-	WebElement SendTowithoutaddon;
+	public WebElement SendTowithoutaddon;
 	@FindBy(xpath = "//span[@class=\"addon-quantity\"]")//this is addon qty
-	WebElement Quantity;
+	public WebElement Quantity;
 	@FindBy(xpath = "//span[@class=\"addon-quantity\"]")
-	WebElement addonQuantity;
+	public WebElement addonQuantity;
 //	@FindBy(xpath = "")
 //	WebElement productQuantity;
 	@FindBy(xpath = "//*[@id=\"viewcart\"]/div[2]/div[3]/div[1]/span[2]") // GBP 19.75
 	public WebElement Amount;
 	@FindBy(xpath = "//*[@id=\"viewcart\"]/div[2]/div[3]/div[1]/span[2]/span") // GBP 
 	public WebElement cartTotalCurrency;
+	@FindBy(xpath = "//i[text()='close']") 
+	public WebElement CartClose;
 	                  
 	                  
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/ul/li/div[2]/div/span[2]") // GBP 15.11
@@ -196,7 +200,7 @@ public class GiftPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/ul[2]/li/div[2]/div/span[2]") // GBP 4.64
 	public WebElement subtotaladdon;
 	@FindBy(xpath = "//span[@class='cart-timeslot']")
-	WebElement shippingChargesincart;
+	public WebElement shippingChargesincart;
 	@FindBy(xpath = "//*[@id=\"cartbtn\"]/span[1]/i")
 	public WebElement cartbtn;
 	@FindBy(xpath = "//*[@id=\"cartItem_0\"]/div[3]/div/img")
@@ -210,10 +214,28 @@ public class GiftPage extends TestBase {
 	@FindBy(xpath = "//p[text()='Your cart is empty']")
 	public WebElement urCartisEmpty;
 	String dd;
+	
+	public void login(String loginid,String Pwd) throws InterruptedException {
+		  loginEmailID.sendKeys(loginid);
+		  Thread.sleep(1000);
+		  continuebutton.click();
+		  Thread.sleep(1000);
+		  pwd.sendKeys(Pwd);
+		  Thread.sleep(1000);
+		  continuebutton.click();
+		  Thread.sleep(1000);
+		
+	}
 
-//	  public void scrollDownToElement(WebElement Element) { 
-//		  JavascriptExecutor js =(JavascriptExecutor) driver;
-//	  js.executeScript("arguments[0].scrollIntoView();", Element); }
+	  public void scrollDownToElementandClick(WebDriver driver,WebElement Element) { 
+		  JavascriptExecutor js =(JavascriptExecutor) driver;
+	      js.executeScript("arguments[0].click();", Element); 
+	  }
+	  
+	  public void validation(WebElement webelement) {
+		   Assert.assertEquals((webelement.isDisplayed()), true);
+			System.out.println(webelement+ "is displayed");
+	   }
 
 	public void navigateToCart(WebDriver driver) {
 		Set<String> IDs = driver.getWindowHandles();
@@ -229,7 +251,7 @@ public class GiftPage extends TestBase {
 		SimpleDateFormat dateF = new SimpleDateFormat("dd/MMMM/yyyy");
 		Calendar cal = Calendar.getInstance();
 
-		cal.add(Calendar.DATE, 4);
+		cal.add(Calendar.DATE, 3);
 		String d = dateF.format(cal.getTime());
 
 		String Ad[] = d.split("/");
@@ -242,7 +264,9 @@ public class GiftPage extends TestBase {
 		} else {
 			after2days = driver.findElement(By.xpath("//a[text()='" + dd + "']"));
 		}
-		after2days.click();
+
+			after2days.click();
+		
 	}
 
 	public void clickfirstAddressintheList(WebDriver driver) throws InterruptedException {
@@ -450,13 +474,11 @@ public class GiftPage extends TestBase {
 			break;
 
 		case "checklogin":
-			if (checklogin.isEnabled()) {
-				System.out.println("This is invalid Email ID");
-			} else {
-				System.out.println("This is valid Email ID");
-			}
+		    Assert.assertEquals(checklogin.isDisplayed(), true); 
+		    System.out.println("This is invalid Email ID");
 			loginEmailID.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 			Thread.sleep(1000);
+			
 			break;
 
 		case "deliveryDetails":
@@ -787,6 +809,7 @@ public class GiftPage extends TestBase {
 			System.out.println("shipping Charges in cart is displayed");
 	
 		}
+		
 		
 
 

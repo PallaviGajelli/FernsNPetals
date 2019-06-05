@@ -3,6 +3,7 @@ package fernsNPetals.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import fernsNPetals.base.TestBase;
 
@@ -53,5 +54,28 @@ public class FlowersPage extends TestBase {
 
 		}
 
+	}
+	
+	public void verifyFiltersInCategoryPage() {
+//		It should display the category page with
+//		Filters:
+//		a) Home>All flowers>Anniversary Flowers
+		Assert.assertEquals(breadcrumb_wrapper.isDisplayed(), true);
+		System.out.println("breadcrumb-wrapper:Home>All flowers>Anniversary Flowers is displayed");
+//		b) Recommended drop down
+        Assert.assertEquals(recomendedDropDown.isDisplayed(), true);
+		System.out.println("recomended Drop Down is displayed");
+//		c)Gift type link with flowers tab
+		Assert.assertEquals(GiftTypeFlowers.isDisplayed(),true);
+		System.out.println("Gift type link with flowers tab is displayed");
+//		d)Occasion link with Anniversary
+		Assert.assertEquals( OccasionAnniversary.isDisplayed(),true);
+		System.out.println("Occasion link with Anniversary is displayed");
+//		e)Delivery city link
+		Assert.assertEquals(DeliveryCity.isDisplayed(),true);
+		System.out.println("Delivery city link is displayed");
+//		f) Price
+		Assert.assertEquals(PriceAnniversary.isDisplayed(),true);
+		System.out.println("price is displayed");
 	}
 }

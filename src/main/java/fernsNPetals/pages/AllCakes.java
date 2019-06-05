@@ -8,8 +8,9 @@ import org.testng.Assert;
 import fernsNPetals.base.TestBase;
 
 public class AllCakes extends TestBase {
-	@FindBy(xpath = "/html/body/main/div[1]/div[3]/ul/li[1]/a/img")
-	WebElement EgglessCake;
+	
+	@FindBy(xpath = "//img[@alt='eggless-cakes']")
+	public WebElement EgglessCake;
 //	@FindBy(xpath = "//*[@id=\"searchProductListing\"]/li[2]/a/div[1]") WebElement PinappleCake;
 //	
 	@FindBy(xpath = "//span[text()=\" Pineapple Cake\"]")
@@ -26,8 +27,8 @@ public class AllCakes extends TestBase {
 	
 	@FindBy(xpath = "//span[text()='Pineapple Cake Half kg']")
 	WebElement PinappleCakecartProduct;
-	
-	@FindBy(xpath = "//*[@id=\"cakesmenu\"]/div/section[1]/ul/li[1]/a")
+
+	@FindBy(xpath = "//*[@id=\"cakesmenu\"]/div/section[1]/ul/li[2]/a")
 	WebElement AllCakes;
 	
 

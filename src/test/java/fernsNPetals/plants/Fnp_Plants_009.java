@@ -30,17 +30,21 @@ public class Fnp_Plants_009 extends TestBase{
 //	2.Click on the Plants  link
 		HomePage.mouseHover("plantsmenu");
 //	3.Click on Bonsai Plants link 
-		BonsaiPlants.click("BonsaiPlants");
-//	4.Click on Bonsai Beauty
+		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//	4.Click on Bonsai Beauty
 		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 //	5.Enter valid pin-code in text box
 		GiftPage.navigateToCart(driver);
-		GiftPage.sendkeys("searchaddressbox", "500084");
+		Thread.sleep(2000);
+		
+		GiftPage.searchaddressbox.sendKeys("500084"); 
+
 //	*Note:Executed step1 has to be verified
 		boolean add=GiftPage.hybd500084.getText().contentEquals("Hyderabad, Telangana, India");
 		Assert.assertEquals(add, true);
-		GiftPage.click("hybd500084");
+		GiftPage.hybd500084.click();
 		System.out.println("Browser is displaying suggestions under the textbox for valid add");
 
 //	6.Clear the data and enter Invalid pin code
@@ -51,14 +55,16 @@ public class Fnp_Plants_009 extends TestBase{
 		System.out.println("Browser is not displaying suggestions under the textbox for invalid add");
 		
 //	7.Clear the data and Enter pin 533249
+		
 		GiftPage.searchaddressbox.clear();
-		GiftPage.sendkeys("searchaddressbox", "533249");	
+		GiftPage.sendkeys("searchaddressbox", "533249");
+		//GiftPage.searchaddressbox.sendKeys("533249"); 	
 //	*Note:Executed step3 has to be verified.
 		boolean add2=GiftPage.hybd533249.getText().contentEquals("Andhra Pradesh, India");
 		Assert.assertEquals(add2, true);
 		System.out.println("Browser is displaying suggestions under the textbox for valid add");
 		GiftPage.click("hybd533249");
-		driver.quit();
+		//driver.quit();
 //	
 //	1.Browser should display suggestions under the pin code textbox
 //	500084,Hyderabad,Telngana,India

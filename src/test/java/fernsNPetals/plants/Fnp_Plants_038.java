@@ -31,20 +31,23 @@ public class Fnp_Plants_038 extends TestBase{
 //			2.Click on the Plants  link
 			HomePage.mouseHover("plantsmenu");
 //			3.Click on Bonsai Plants link 
-			BonsaiPlants.click("BonsaiPlants");
-//			4.Click on Bonsai Beauty
+			Thread.sleep(1000);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//			4.Click on Bonsai Beauty
 			js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 //			5.Enter Area/pincode in the texbox
 			GiftPage.navigateToCart(driver);
+			Thread.sleep(2000);
 			GiftPage.sendkeys("searchaddressbox", "kondapur");
 //			6.Select suggestions under the textbox
 			GiftPage.clickfirstAddressintheList(driver);
+			Thread.sleep(1000);
 //			7.Click on Change Date Link
-			GiftPage.click("SelectDeliveryDate");
+			GiftPage.click("datetimeshipping");
 //			8.Select Delivery date
 			GiftPage.selectDayAfterTomorrow(driver);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 //			9.Click on Buy Now button 
 			GiftPage.click("buynowbutton");
 //			10.Click on Continue With Addon
@@ -56,8 +59,8 @@ public class Fnp_Plants_038 extends TestBase{
 			CheckoutPage.sendkeys("loginEmailID", prop.getProperty("mailID"));
 			CheckoutPage.click("continuebutton");
 //		13.Enter Password and click on continue button
-		    CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
-		    CheckoutPage.click("continuebutton");
+			CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
+			CheckoutPage.click("continuebutton");
 
 //			14.Select Prefix as-Ms
             CheckoutPage.selectPrefixAsMs(driver);

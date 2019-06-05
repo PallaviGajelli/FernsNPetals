@@ -72,7 +72,7 @@ public class TC_01 extends TestBase{
 		driver.switchTo().window(giftwindow);
 
 //		7.Enter area/pincode 
-		GiftPage.sendkeys("searchaddressbox", "Hyderabad");
+		GiftPage.searchaddressbox.sendKeys("Hyderabad");
 		GiftPage.clickfirstAddressintheList(driver);
 		Thread.sleep(2000);
 		

@@ -15,20 +15,24 @@ import fernsNPetals.pages.HomePage;
 public class Fnp_Plants_003 extends TestBase {
 	
 	@Test
-	public void Fnp_Plants_003() {
+	public void Fnp_Plants_003() throws InterruptedException {
 //	1.Launch the FNP Application  in the browser
 		initialization();
 		HomePage HomePage= new HomePage();
 		HomePage= PageFactory.initElements(driver, HomePage.getClass());
 		BonsaiPlants BonsaiPlants= new BonsaiPlants();
 		BonsaiPlants= PageFactory.initElements(driver, BonsaiPlants.getClass());
+		
 //	2.mouse hover the Plants  link
 		HomePage.mouseHover("plantsmenu");
+		Thread.sleep(1000);
 //	3.Click on Bonsai Plants link
-		BonsaiPlants.click("BonsaiPlants");	
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+		//BonsaiPlants.BonsaiPlants.click();	
 		
 //	4.Click on any product 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
 		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 		//BonsaiPlants.click("Marvellous_Bonsai_Plant");
 //	Ex: Bonsai Beauty

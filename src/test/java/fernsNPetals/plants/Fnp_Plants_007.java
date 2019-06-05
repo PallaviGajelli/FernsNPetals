@@ -26,9 +26,11 @@ public class Fnp_Plants_007 extends TestBase{
 //	2.Click on the Plants  link
 	HomePage.mouseHover("plantsmenu");
 //	3.Click on Bonsai Plants link 
-	BonsaiPlants.click("BonsaiPlants");
-//	4.Click on Bonsai Beauty
+	Thread.sleep(1000);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//	4.Click on Bonsai Beauty
+	
 	js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 //	5.Enter Area/pincode in the texbox
 	Set<String> IDs = driver.getWindowHandles();
@@ -37,19 +39,23 @@ public class Fnp_Plants_007 extends TestBase{
 	String cartwindow = iter.next();
 
 	driver.switchTo().window(cartwindow);
-	GiftPage.sendkeys("searchaddressbox", "hyderabad");
+	 Thread.sleep(1000);
+     GiftPage.searchaddressbox.sendKeys("hyderabad"); 
+     Thread.sleep(1000);
 	
 //	6.Select suggestions under the textbox
 	GiftPage.clickfirstAddressintheList(driver);
-	
+	Thread.sleep(1000);
 //	7.Click on Change Date Link
 	
 //	8.Select Delivery date
 //	9.Click on Add To Cart Button
-	GiftPage.click("addtocartbutton");
+	GiftPage.addtocartbutton.click();
+	Thread.sleep(2000);
 //	10.Click on Continue with Add-on
-	GiftPage.click("addoncheckbox");
-	GiftPage.click("addonbutton");
+	GiftPage.addoncheckbox.click();
+	GiftPage.addonbutton.click();
+	Thread.sleep(1000);
 //	11.Click on Cart lcon in header tool bar
 	
 	

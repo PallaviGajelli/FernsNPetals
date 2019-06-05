@@ -28,9 +28,11 @@ public class Fnp_Plants_004 extends TestBase{
 	HomePage.mouseHover("plantsmenu");
 	
 //	3.Click on Bonsai Plants link 
-	BonsaiPlants.click("BonsaiPlants");	
-//	4.Click on Bonsai Beauty
+	Thread.sleep(1000);
 	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);	
+//	4.Click on Bonsai Beauty
+	
 	js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 	
 	Set<String>IDs= driver.getWindowHandles();

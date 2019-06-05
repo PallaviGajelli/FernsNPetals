@@ -27,18 +27,22 @@ public class Fnp_Plants_013 extends TestBase{
 //	2.Click on the Plants  link
 		HomePage.mouseHover("plantsmenu");
 //	3.Click on Bonsai Plants link 
-		BonsaiPlants.click("BonsaiPlants");
-//	4.Click on Bonsai Beauty
+		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//	4.Click on Bonsai Beauty
 		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 //	5.Enter Invalid  pin code in the textbox
 		GiftPage.navigateToCart(driver);
+		Thread.sleep(2000);
 		GiftPage.sendkeys("searchaddressbox", "adsdsdhfaekfh");
 		GiftPage.IsAddressintheListDisplayed(driver);
 		System.out.println("Browser is not displaying suggestions under the textbox for invalid add");
 //	*Note:Expected step2 has to be verified
 //	6.click on buy now button
+		Thread.sleep(1000);
 		GiftPage.click("buynowbutton");
+		Thread.sleep(1000);
 		GiftPage.vrify("pincodealert");
 		driver.quit();
 		

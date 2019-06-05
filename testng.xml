@@ -4,11 +4,10 @@
 <listeners>
      <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
 </listeners>
-  <test parallel="classes" thread-count="5" name="Test">
+  <test parallel="methods" thread-count="5" name="Test">
     <classes>
       <class name="fernsNPetals.datadrivenTCs.searchboxDDT"/>
-      <class name="fernsNPetals.PositiveTCs.functionalPositiveFlow"/>
-      <class name="fernsNPetals.NegativeTCs.functionalNegativeFlow"/>
+      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

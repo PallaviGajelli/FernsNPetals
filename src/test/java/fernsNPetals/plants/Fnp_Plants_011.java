@@ -28,24 +28,22 @@ public class Fnp_Plants_011 extends TestBase{
 //	2.Click on the Plants  link
 		HomePage.mouseHover("plantsmenu");
 //	3.Click on Bonsai Plants link 
-		BonsaiPlants.click("BonsaiPlants");
-//	4.Click on Bonsai Beauty
+		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
+		js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//	4.Click on Bonsai Beauty
+	    js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 //	5.Enter Area/pincode in the texbox
-		Set<String> IDs = driver.getWindowHandles();
-		java.util.Iterator<String> iter = IDs.iterator();
-		String homewindow = iter.next();
-		String cartwindow = iter.next();
-
-		driver.switchTo().window(cartwindow);
-		GiftPage.sendkeys("searchaddressbox", "hyderabad");
+		GiftPage.navigateToCart(driver);
+		Thread.sleep(2000);
+		GiftPage.searchaddressbox.sendKeys("hyderabad"); 
 //	6.Select suggestions under the textbox
 		GiftPage.clickfirstAddressintheList(driver);
+		Thread.sleep(2000);
 //	7.Click on Change Date Link
-		GiftPage.click("datetimeshipping");
+		GiftPage.datetimeshipping.click();
 		GiftPage.selectDayAfterTomorrow(driver);
-		driver.quit();
+		//driver.quit();
 		
 //	8.Select Delivery date
 //	*Note:Expected step1 has to be verified

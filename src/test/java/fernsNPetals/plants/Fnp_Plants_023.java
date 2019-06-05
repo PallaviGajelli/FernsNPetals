@@ -32,20 +32,23 @@ public class Fnp_Plants_023 extends TestBase{
 //			2.Click on the Plants  link
 			HomePage.mouseHover("plantsmenu");
 //			3.Click on Bonsai Plants link 
-			BonsaiPlants.click("BonsaiPlants");
-//			4.Click on Bonsai Beauty
+			Thread.sleep(1000);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//			4.Click on Bonsai Beauty
 			js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 //			5.Enter Area/pincode in the texbox
 			GiftPage.navigateToCart(driver);
+			Thread.sleep(2000);
 			GiftPage.sendkeys("searchaddressbox", "kondapur");
 //			6.Select suggestions under the textbox
 			GiftPage.clickfirstAddressintheList(driver);
+			Thread.sleep(1000);
 //			7.Click on Change Date Link
-			GiftPage.click("SelectDeliveryDate");
+			GiftPage.click("datetimeshipping");
 //			8.Select Delivery date
 			GiftPage.selectDayAfterTomorrow(driver);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 //			9.Click on Buy Now button 
 			GiftPage.click("buynowbutton");
 //			10.Click on Continue With Addon
@@ -70,6 +73,11 @@ public class Fnp_Plants_023 extends TestBase{
 			js1.executeScript("arguments[0].scrollIntoView();",CheckoutPage.SendersDetailsheading);
 			Thread.sleep(1000);
 			CheckoutPage.verify("sendersdetails");
+			Thread.sleep(1000);
+//			16.Click on the save address button
+			CheckoutPage.filladdressToDelivery(driver, "", "", "");
+//			*Note:Expected step1 has to be verified
+			CheckoutPage.verify("EmptyAddressAlertMsg");
 //			siri
 //			abc123@gmail.Com
 //			9876543210
@@ -79,11 +87,11 @@ public class Fnp_Plants_023 extends TestBase{
 		}catch(Exception e) {
 			throw(e);
 		}
-		finally {
-			 driver.quit();
-			 Runtime rt =Runtime.getRuntime();
-			 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
-		}
+//		finally {
+//			 driver.quit();
+//			 Runtime rt =Runtime.getRuntime();
+//			 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
+//		}
 	}
 
 }

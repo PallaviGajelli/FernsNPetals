@@ -17,7 +17,7 @@ import fernsNPetals.pages.HomePage;
 public class Fnp_Plants_022 extends TestBase{
 	
 	@Test
-	public void Fnp_Plants_022() throws IOException {
+	public void Fnp_Plants_022() throws Throwable {
 		try {
 			
 			
@@ -31,47 +31,54 @@ public class Fnp_Plants_022 extends TestBase{
 			BonsaiPlants = PageFactory.initElements(driver, BonsaiPlants.getClass());
 			CheckoutPage CheckoutPage = new CheckoutPage();
 			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-//			2.Click on the Plants  link
+		//2.Click on the Plants  link
 			HomePage.mouseHover("plantsmenu");
-//			3.Click on Bonsai Plants link 
-			BonsaiPlants.click("BonsaiPlants");
-//			4.Click on Bonsai Beauty
+		//3.Click on Bonsai Plants link 
+			Thread.sleep(1000);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+		//4.Click on Bonsai Beauty
 			js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
-//			5.Enter Area/pincode in the texbox
+		//5.Enter Area/pincode in the texbox
 			GiftPage.navigateToCart(driver);
-			GiftPage.sendkeys("searchaddressbox", "kondapur");
-//			6.Select suggestions under the textbox
+			Thread.sleep(2000);
+			GiftPage.searchaddressbox.sendKeys("hyderabad"); 
+		//6.Select suggestions under the textbox
 			GiftPage.clickfirstAddressintheList(driver);
-//			7.Click on Change Date Link
-			GiftPage.click("datetimeshipping");
-//			8.Select Delivery date
+		//7.Click on Change Date Link
+			Thread.sleep(2000);
+			GiftPage.SelectDeliveryDate.click();
+		//8.Select Delivery date
 			GiftPage.selectDayAfterTomorrow(driver);
 			Thread.sleep(2000);
-//			9.Click on Buy Now button 
+		//9.Click on Buy Now button 
 			GiftPage.click("buynowbutton");
-//			10.Click on Continue With Addon
+			Thread.sleep(2000);
+		//10.Click on Continue With Addon
 			GiftPage.click("addoncheckbox");
+			Thread.sleep(1000);
 			GiftPage.click("addonbutton");
-//		11.In checkout login page,Click on email id 
-
-//		12.Enter Valid mail id and click on continue button i.e Existing user
-			CheckoutPage.sendkeys("loginEmailID", prop.getProperty("mailID"));
-			CheckoutPage.click("continuebutton");
-//		13.Enter Password and click on continue button
-			CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
-			CheckoutPage.click("continuebutton");
+			Thread.sleep(1000);
+//			11.In checkout login page,Click on email id 
+//			12.Enter Valid mail id and click on continue button i.e Existing user
+//			13.Enter Password and click on continue button
+				CheckoutPage.loginFnP();
+				Thread.sleep(3000);
 //			14.Click on Delete button in delivery details page
-			CheckoutPage.click("deleteProductatcheckout");
+			CheckoutPage.deleteProductatcheckout.click();
+			Thread.sleep(1000);
 //			*Note:Expected step1 has to verified
 			CheckoutPage.verify("deleteProductalert");
+			Thread.sleep(1000);
 //			15.Click on yes button
-			CheckoutPage.click("deleteProductalertYesBtn");
+			CheckoutPage.deleteProductalertYesBtn.click();
+			Thread.sleep(1000);
 //			*Note:Expected step2 has to verified
 			CheckoutPage.verify("cartisEmptyMsg");
 			CheckoutPage.verify("StartShoppingNowBtn");
 //			16.Click on start shop now button
-			CheckoutPage.click("StartShoppingNowBtn");
+			CheckoutPage.StartShoppingNowBtn.click();
+			Thread.sleep(1000);
 			
 //			*Note:Expected step3 has to verified
 			String homeurl = driver.getCurrentUrl();
@@ -88,14 +95,14 @@ public class Fnp_Plants_022 extends TestBase{
 			
 			
 			
-		}catch(Exception e) {
-			
+		}catch(Throwable e) {
+			throw e;
 		}
-		finally {
-			 driver.quit();
-			 Runtime rt =Runtime.getRuntime();
-			 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
-		}
+//		finally {
+//			 driver.quit();
+//			 Runtime rt =Runtime.getRuntime();
+//			 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
+//		}
 	}
 
 }

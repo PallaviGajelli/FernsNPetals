@@ -22,6 +22,8 @@ public class TestUtil extends TestBase {
 	
 	public static long PAGE_LOAD_TIMEOUT = 5;
 	public static long IMPLICIT_WAIT = 5;
+	
+	public static String Screenshotlocation = prop.getProperty("ScreenshotsLocation")+ System.currentTimeMillis() + ".png"; 
 
 	public static String TESTDATA_SHEET_PATH = "C:\\Users\\sanjaygajelli\\eclipse-workspace\\"
 			+ "FernsNPetals\\src\\main\\java\\fernsNPetals\\testdata\\FernsNPetalsTestData.xlsx";
@@ -64,7 +66,8 @@ public class TestUtil extends TestBase {
 	public static void takeScreenshotAtEndOfTest() throws IOException {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
-		FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
+		//FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
+		FileUtils.copyFile(scrFile, new File(Screenshotlocation));
 	}
 
 	public static void runTimeInfo(String messageType, String message) throws InterruptedException {

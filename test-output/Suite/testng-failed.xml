@@ -4,22 +4,15 @@
   <listeners>
     <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
   </listeners>
-  <test parallel="classes" name="Test(failed)">
+  <test parallel="methods" name="Test(failed)">
     <classes>
-      <class name="fernsNPetals.NegativeTCs.functionalNegativeFlow">
+      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm">
         <methods>
-          <include name="negativeFlow"/>
           <include name="tearDown"/>
           <include name="setUp"/>
+          <include name="addressform" invocation-numbers="0 1 2"/>
         </methods>
-      </class> <!-- fernsNPetals.NegativeTCs.functionalNegativeFlow -->
-      <class name="fernsNPetals.PositiveTCs.functionalPositiveFlow">
-        <methods>
-          <include name="positiveFlow"/>
-          <include name="setUp"/>
-          <include name="tearDown"/>
-        </methods>
-      </class> <!-- fernsNPetals.PositiveTCs.functionalPositiveFlow -->
+      </class> <!-- fernsNPetals.datadrivenTCs.ValidAddressForm -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

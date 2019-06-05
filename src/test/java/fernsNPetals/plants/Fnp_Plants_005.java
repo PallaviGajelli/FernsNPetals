@@ -28,9 +28,11 @@ public class Fnp_Plants_005 extends TestBase{
 		HomePage.mouseHover("plantsmenu");
 		
 //	3.Click on Bonsai Plants link 
-		BonsaiPlants.click("BonsaiPlants");	
-//	4.Click on Bonsai Beauty
+		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);	
+//	4.Click on Bonsai Beauty
+		
 		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
 		
 		Set<String>IDs= driver.getWindowHandles();
@@ -42,7 +44,8 @@ public class Fnp_Plants_005 extends TestBase{
 //	5.Leave the fields empty
 		
 //	6.Click on continue button
-		GiftPage.click("buynowbutton");
+	    Thread.sleep(1000);
+		GiftPage.buynowbutton.click();
 		
 //	*Note:Expected step1 has to be verified
 	

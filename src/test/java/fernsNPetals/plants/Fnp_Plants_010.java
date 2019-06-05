@@ -27,17 +27,14 @@ public class Fnp_Plants_010 extends TestBase{
 //	2.Click on the Plants  link
 		HomePage.mouseHover("plantsmenu");
 //	3.Click on Bonsai Plants link 
-		BonsaiPlants.click("BonsaiPlants");
-//	4.Click on Bonsai Beauty
+		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
+		js.executeScript("arguments[0].click();", BonsaiPlants.BonsaiPlants);
+//	4.Click on Bonsai Beauty
 		
-		Set<String> IDs = driver.getWindowHandles();
-		java.util.Iterator<String> iter = IDs.iterator();
-		String homewindow = iter.next();
-		String cartwindow = iter.next();
-
-		driver.switchTo().window(cartwindow);
+		js.executeScript("arguments[0].click();", BonsaiPlants.Marvellous_Bonsai_Plant);
+		GiftPage.navigateToCart(driver);
+		Thread.sleep(2000);
 //	5.leave the fields empty
 		
 //	6.Click on Buy Now button

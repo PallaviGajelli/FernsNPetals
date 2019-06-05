@@ -7,12 +7,11 @@ import org.testng.Assert;
 import fernsNPetals.base.TestBase;
 
 public class BonsaiPlants extends TestBase{
-	
-	@FindBy(xpath = "//*[@id='plantsmenu']/div/section[1]/ul/li[3]/a")
-	WebElement BonsaiPlants;
+
+	@FindBy(xpath = "//a[@href='/bonsai-plants?promo=plantsmenu_dt_hm']")
+	public WebElement BonsaiPlants;
 	@FindBy(xpath = "//img[@title='Marvellous Bonsai Plant']")
-	public
-	WebElement Marvellous_Bonsai_Plant;
+	public WebElement Marvellous_Bonsai_Plant;
 	
 	
 	

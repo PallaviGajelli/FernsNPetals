@@ -58,17 +58,17 @@ public class CheckoutPage extends TestBase {
     public WebElement yourPhotoOnProduct;
 	
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div")
-	WebElement deleteProductatcheckout;
-    @FindBy(xpath = "/html/body/div[5]/div[2]/div/div")
-    WebElement deleteProductalert;//Are you sure you want to delete this item ?YesNo
-    @FindBy(xpath = "/html/body/div[5]/div[2]/div/div/div[2]/span[1]")
-    WebElement deleteProductalertYesBtn;
-    @FindBy(xpath = "/html/body/div[5]/div[2]/div/div/div[2]/span[2]")
-    WebElement deleteProductalertNoBtn;
+	public WebElement deleteProductatcheckout;
+    @FindBy(xpath = "//div[text()='Are you sure you want to delete this item ?']")
+    public WebElement deleteProductalert;//Are you sure you want to delete this item ?YesNo
+    @FindBy(xpath = "//span[@class='delete-confirm-yes']")
+    public WebElement deleteProductalertYesBtn;
+    @FindBy(xpath = "//span[@class='delete-confirm-no']")
+    public WebElement deleteProductalertNoBtn;
     @FindBy(xpath = "//div[@class='empty-msg']")
-    WebElement cartisEmptyMsg;//shopping_cartYour cart is empty. But it doesn't have to be
+    public WebElement cartisEmptyMsg;//shopping_cartYour cart is empty. But it doesn't have to be
     @FindBy(xpath = "//span[text()='START SHOPPING NOW']")
-    WebElement StartShoppingNowBtn;
+    public WebElement StartShoppingNowBtn;
     @FindBy(xpath = "//*[@id=\"sidebar\"]/div[2]/div[1]/span")
 	public static WebElement TotalProductPriceonPriceDetails ;
     @FindBy(xpath = "//*[@id=\"sidebar\"]/div[2]/div[2]/span")
@@ -90,7 +90,7 @@ public class CheckoutPage extends TestBase {
 	WebElement MarvellousBonsaiPlantPrice;//15.11
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/span/span[2]")
 	WebElement MarvellousBonsaiPlantqty;//x1
-	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[2]")
+	@FindBy(xpath = "//div[@class='delivery-date ']")
 	public WebElement DeliveryDate;//Fri, 3rd May, 2019
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[3]/div[1]/div[2]")
 	public WebElement deliverytime ;//09:00 - 21:00 Hrs
@@ -100,8 +100,8 @@ public class CheckoutPage extends TestBase {
 	public WebElement addon;
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[3]/div/div/div[2]/div[1]")
 	public WebElement addonwithimg;
-	@FindBy(xpath = "//*[@id=\"saved-address--1\"]/ul[1]/li/span/span")
-	public static WebElement addnewaddress;
+	@FindBy(xpath = "//h5[text()='Add Delivery Address']")
+	public static WebElement addnewaddress;//header
 	@FindBy(xpath = "//h5[text()='Free Message card']")
 	public WebElement FreeMessagecard;
 	@FindBy(xpath = "//span[@class='sender-info-title']")
@@ -228,8 +228,15 @@ public class CheckoutPage extends TestBase {
 	@FindBy(xpath = "//*[@id=\"sidebar\"]")
 	WebElement deliveryDetails;
 	@FindBy(xpath = "//div[@class='DayPicker-Day DayPicker-Day--selected']")
-	WebElement SelectedDate;
+	public WebElement SelectedDate;
+	
+	//div[ @class='DayPicker-Day DayPicker-Day--selected']
 	String dd;
+	
+	 public void validation(WebElement webelement) {
+		   Assert.assertEquals((webelement.isDisplayed()), true);
+			System.out.println(webelement+ "is displayed");
+	   }
 	
 	public void selectPrefixAsMs(WebDriver driver) throws InterruptedException {
 		
@@ -241,6 +248,26 @@ public class CheckoutPage extends TestBase {
 		js.executeScript("arguments[0].click();",CheckoutPage.PrefixMs);
 	}
 	
+	public void selectDayAfterTomorrow(WebDriver driver) {
+		Date date = new Date();
+		SimpleDateFormat dateF = new SimpleDateFormat("dd/MMMM/yyyy");
+		Calendar cal = Calendar.getInstance();
+
+		cal.add(Calendar.DATE, 4);
+		String d = dateF.format(cal.getTime());
+
+		String Ad[] = d.split("/");
+		String dd = Ad[0];
+
+		WebElement after2days;
+		if (dd.startsWith("0")) {
+			dd = dd.substring(1, 2);
+			after2days = driver.findElement(By.xpath("//a[text()='" + dd + "']"));
+		} else {
+			after2days = driver.findElement(By.xpath("//a[text()='" + dd + "']"));
+		}
+		after2days.click();
+	}
 	
 	
 	public void selectTomorrow(WebDriver driver) {
@@ -486,115 +513,85 @@ public class CheckoutPage extends TestBase {
 			System.out.println("registrationPage is displayed");
 			break;
         case "loginEmailID":
-			boolean a = loginEmailID.isDisplayed();
-			Assert.assertEquals(a, true);
+			Assert.assertEquals(loginEmailID.isDisplayed(), true);
 			System.out.println("loginEmailID is displayed");
 			break;
 		case "continuebutton":
-			boolean a1 = continuebutton.isDisplayed();
-			Assert.assertEquals(a1, true);
+			Assert.assertEquals(continuebutton.isDisplayed(), true);
 			System.out.println("continuebutton is displayed");
 			break;
 		case "facebooklogin":
-			boolean a2 = facebooklogin.isDisplayed();
-			Assert.assertEquals(a2, true);
+			Assert.assertEquals(facebooklogin.isDisplayed(), true);
 			System.out.println("facebook login is displayed");
 			break;
 		case "googlelogin":
-			boolean a3 = googlelogin.isDisplayed();
-			Assert.assertEquals(a3, true);
+			Assert.assertEquals(googlelogin.isDisplayed(), true);
 			System.out.println("google login is displayed");
 			break;
 		case "orderenDeliveryDetails":
-			boolean a4 = orderenDeliveryDetails.isDisplayed();
-			Assert.assertEquals(a4, true);
+			Assert.assertEquals(orderenDeliveryDetails.isDisplayed(), true);
 			System.out.println("Header 'Marvellous Bonsai Plant' is displayed");
 			break;
 		case "paymentOptions":
-			boolean a5 = paymentOptions.isDisplayed();
-			Assert.assertEquals(a5, true);
+			Assert.assertEquals(paymentOptions.isDisplayed(), true);
 			System.out.println("paymentOptions is displayed");
 			break;
 		case "orderenDeliveryDetailsPage":
-			boolean a6 = orderenDeliveryDetailsPage.isDisplayed();
-			Assert.assertEquals(a6, true);
+		    Assert.assertEquals(orderenDeliveryDetailsPage.isDisplayed(), true);
 			System.out.println("ordere n Delivery Details Page is displayed");
 			break;
 		case "errorLogin"://this is for wrong password
-			boolean a7 = errorLogin.isDisplayed();
-			String a8=errorLogin.getText();
-			Assert.assertEquals(a7, true);
-			System.out.println("Enter correct email or password. is displayed is :"+a8);
+            Assert.assertEquals(errorLogin.isDisplayed(), true);
+			System.out.println("Enter correct email or password. is displayed is :"+errorLogin.getText());
 			break;
 		case "MarvellousBonsaiPlantPriceandQty":
-			boolean a9 = MarvellousBonsaiPlantPrice.isDisplayed();
-			Assert.assertEquals(a9, true);
+			Assert.assertEquals(MarvellousBonsaiPlantPrice.isDisplayed(), true);
 			System.out.println("Marvellous Bonsai Plant Price is displayed in ordere n Delivery Details Page");
-			
-			boolean a20 = MarvellousBonsaiPlantqty.isDisplayed();
-			Assert.assertEquals(a20, true);
-			System.out.println("Marvellous Bonsai Plant qty is displayed in ordere n Delivery Details Page");
 			break;
 		case "Deliverydateandtime":
-			boolean a10 = DeliveryDate.isDisplayed();
-			Assert.assertEquals(a10, true);
+	        Assert.assertEquals(DeliveryDate.isDisplayed(), true);
 			System.out.println("Delivery Date is displayed in ordere n Delivery Details Page");
-			
-			boolean a19 = deliverytime.isDisplayed();
-			Assert.assertEquals(a19, true);
+		    Assert.assertEquals(deliverytime.isDisplayed(), true);
 			System.out.println("delivery time is displayed in ordere n Delivery Details Page");
 			break;
 		case "changebtn":
-			boolean a11 = changebtn.isDisplayed();
-			Assert.assertEquals(a11, true);
+			Assert.assertEquals(changebtn.isDisplayed(), true);
 			System.out.println("changebtn is displayed in ordere n Delivery Details Page");
 			break;
 		case "addon":
-			boolean a12 = addon.isDisplayed();
-			Assert.assertEquals(a12, true);
+			Assert.assertEquals(addon.isDisplayed(), true);
 			System.out.println("addon is displayed in ordere n Delivery Details Page");
 			break;
 		case "addnewaddress":
-			boolean a13 = addnewaddress.isDisplayed();
-			Assert.assertEquals(a13, true);
+			Assert.assertEquals(addnewaddress.isDisplayed(), true);
 			System.out.println("add new address is displayed in ordere n Delivery Details Page");
 			break;
 		case "FreeMessagecard":
-			boolean a14 = FreeMessagecard.isDisplayed();
-			Assert.assertEquals(a14, true);
+			Assert.assertEquals(FreeMessagecard.isDisplayed(), true);
 			System.out.println("FreeMessagecard is displayed in ordere n Delivery Details Page");
 			break;
 		case "sendersdetails":
-			boolean a15 = SendersDetailsheading.isDisplayed();
-			Assert.assertEquals(a15, true);
+			Assert.assertEquals(SendersDetailsheading.isDisplayed(), true);
 			System.out.println("Senders Details heading is displayed in ordere n Delivery Details Page");
-			
-			boolean a16 = senderName.isDisplayed();
-			Assert.assertEquals(a16, true);
+	    	Assert.assertEquals(senderName.isDisplayed(), true);
 			System.out.println("senderName is displayed in ordere n Delivery Details Page");
-			
-			boolean a17 = senderEmailId.isDisplayed();
-			Assert.assertEquals(a17, true);
+	        Assert.assertEquals(senderEmailId.isDisplayed(), true);
 			System.out.println("senderEmailId is displayed in ordere n Delivery Details Page");
-			
-			boolean a18 = senderPhone.isDisplayed();
-			Assert.assertEquals(a18, true);
+		    Assert.assertEquals(senderPhone.isDisplayed(), true);
 			System.out.println("senderPhone is displayed in ordere n Delivery Details Page");
 			break;
 		case "selectDeliveryDate":
-			boolean a21 = selectDeliveryDate.isDisplayed();
-			Assert.assertEquals(a21, true);
+			Assert.assertEquals(selectDeliveryDate.isDisplayed(), true);
 			System.out.println("select Delivery Date is displayed on clicking changebtn");
 			break;
 		case "DeliveryDate":
-			boolean a22 = DeliveryDate.isDisplayed();
-			Assert.assertEquals(a22, true);
+			Assert.assertEquals(DeliveryDate.isDisplayed(), true);
 			System.out.println("Delivery Date is displayed in ordere n Delivery Details Page");
-			String a23= DeliveryDate.getText();
+			
 			try {
 				//String[] formats = {"EEE, d'st' MMM, yyyy","EEE, d'nd' MMM, yyyy","EEE, d'rd' MMM, yyyy","EEE, d'th' MMM, yyyy"};
 				DateFormat format = new SimpleDateFormat("EEE, d'th' MMM, yyyy", Locale.ENGLISH);
-				Date date = format.parse(a23);
+				Date date = format.parse(DeliveryDate.getText());
 				System.out.println(date); // Sat Jan 02 00:00:00 GMT 2010
 				
 				
@@ -604,46 +601,37 @@ public class CheckoutPage extends TestBase {
 			}
 			break;
 		case "deleteProductalert":
-			boolean a24 = deleteProductalert.isDisplayed();
-			String a25=deleteProductalert.getText();
-			Assert.assertEquals(a24, true);
-			Assert.assertEquals(a25,"Are you sure you want to delete this item ?\nYESNO");
-			System.out.println("select Delivery Date is displayed on clicking changebtn :"+a25);
+	        Assert.assertEquals(deleteProductalert.isDisplayed(), true);
+			Assert.assertEquals(deleteProductalert.getText().contains("Are you sure you want to delete this item ?"),true);
+			System.out.println("select Delivery Date is displayed on clicking changebtn :"+deleteProductalert.getText());
 			break; 
 		case "StartShoppingNowBtn":
-			boolean a26 = StartShoppingNowBtn.isDisplayed();
-			Assert.assertEquals(a26, true);
+			Assert.assertEquals(StartShoppingNowBtn.isDisplayed(), true);
 			System.out.println("Start Shopping Now Btn is displayed in ordere n Delivery Details Page");
+			break;
 		case "cartisEmptyMsg":
-			boolean a27 = cartisEmptyMsg.isDisplayed();
-			Assert.assertEquals(a27, true);
+			Assert.assertEquals(cartisEmptyMsg.isDisplayed(), true);
 			System.out.println("cart is Empty Msg is displayed in ordere n Delivery Details Page");
+			break;
 		case "EmptyAddressAlertMsg":
-		    boolean a29= nameisrequire.isDisplayed();
-			String a32 = nameisrequire.getText();
-			Assert.assertEquals(a29, true);
-			Assert.assertEquals(a32, "* Name is required");
-			System.out.println("name is require is displayed :"+a32);
-			
-			boolean a28 = addisrequire.isDisplayed();
-			String a31 = addisrequire.getText();
-			Assert.assertEquals(a28, true);
-			Assert.assertEquals(a31, "* Recipient's address is required");
-			System.out.println("add is require is displayed :"+a31);
+		 
+			Assert.assertEquals(nameisrequire.isDisplayed(), true);
+			Assert.assertEquals(nameisrequire.getText(), "* Name is required");
+			System.out.println("name is require is displayed :"+nameisrequire.getText());
 		
-			boolean a30 = mobileisreqire.isDisplayed();
-			Assert.assertEquals(a30, true);
-			String a33 = mobileisreqire.getText();
-			Assert.assertEquals(a33, "* Recipient’s mobile number is required.");
-	    	System.out.println("mobile is reqire is displayed :"+a33);
+			Assert.assertEquals(addisrequire.isDisplayed(), true);
+			Assert.assertEquals(addisrequire.getText(), "* Recipient's address is required");
+			System.out.println("add is require is displayed :"+addisrequire.getText());
+	    	Assert.assertEquals(mobileisreqire.isDisplayed(), true);
+			
+			Assert.assertEquals(mobileisreqire.getText(), "* Recipient’s mobile number is required.");
+	    	System.out.println("mobile is reqire is displayed :"+mobileisreqire.getText());
 			break;
             
 		    case "invalidrMobile":
-	        boolean a34= invalidrMobile.isDisplayed();
-			String a35 = invalidrMobile.getText();
-			Assert.assertEquals(a34, true);
-			Assert.assertEquals(a35, "* Recipient’s mobile number is invalid.");
-			System.out.println("invalid rmobile is displayed :"+a35);
+	        Assert.assertEquals(invalidrMobile.isDisplayed(), true);
+			Assert.assertEquals(invalidrMobile.getText(), "* Recipient’s mobile number is invalid.");
+			System.out.println("invalid rmobile is displayed :"+invalidrMobile.getText());
 			break;
 		   
 //		    case "InvalidAddressAlertMsg":
@@ -666,18 +654,15 @@ public class CheckoutPage extends TestBase {
 //	    	System.out.println("mobile is reqire is displayed :"+a41);
 //			break;
 		    case "savedAddselected":
-			boolean a42 = savedAddselected.isDisplayed();
-			Assert.assertEquals(a42, true);
+			Assert.assertEquals(savedAddselected.isDisplayed(), true);
 			System.out.println("saved Add selected is displayed in ordere n Delivery Details Page");
 			break;
 		    case "editsavedAddpage":
-			boolean a43 = editsavedAddpage.isDisplayed();
-			Assert.assertEquals(a43, true);
+		    Assert.assertEquals(editsavedAddpage.isDisplayed(), true);
 			System.out.println("edit saved Add page is displayed in ordere n Delivery Details Page");
 			break;
 		    case "checklogin":
-				boolean a44 = checklogin.isDisplayed();
-				Assert.assertEquals(a44, true);
+				Assert.assertEquals(checklogin.isDisplayed(), true);
 				System.out.println("wrong email id alert is displayed");
 				break;
 		    case "paymentOptionspage":
