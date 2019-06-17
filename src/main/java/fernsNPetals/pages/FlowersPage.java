@@ -21,7 +21,7 @@ public class FlowersPage extends TestBase {
 	public WebElement GiftTypeFlowers;
 	@FindBy(xpath = "//*[@id=\"topbarcontainer\"]/div/div/section/nav/ul/li[2]/a")
 	public WebElement OccasionAnniversary;
-	@FindBy(xpath = "//*[@id=\"topbarcontainer\"]/div/div/section/nav/ul/li[3]/a")
+	@FindBy(xpath = "//*[@id=\"topbarcontainer\"]/div/div/section/nav/ul/li[2]/a")
 	public WebElement DeliveryCity;
 	@FindBy(xpath = "//*[@id=\"topbarcontainer\"]/div/div/section/ul/li/a")
 	public WebElement PriceAnniversary;
@@ -29,7 +29,7 @@ public class FlowersPage extends TestBase {
 	public WebElement Price500Plus;
 	@FindBy(xpath = "//*[@id=\"left-dropdown-1\"]/div/div/div/div/ul/li[2]/div/ul/li[2]/a")
 	public WebElement Roses;
-	@FindBy(xpath = "//*[@id=\"left-dropdown-2\"]/div/div/div/div/ul/li[1]/div/ul/li[2]/a")
+	@FindBy(xpath = "//*[@id=\"occasionsmenu\"]/div/section[2]/ul/li[2]/a")
 	public WebElement AnniversaryUnderOccation;
 	@FindBy(xpath = "//*[@id=\"deliverycity\"]/li[3]/a")
 	public WebElement Bangalore;
@@ -38,6 +38,8 @@ public class FlowersPage extends TestBase {
 	public WebElement ElegancePinkRosesBouquet;
 	@FindBy(xpath = " //span[text()=' Vivid - Red Roses Bouquet']")
 	public WebElement VividRedRosesBouquet;
+	@FindBy(xpath = " //span[text()='Bright Yellow Roses Bouquet']")
+	public WebElement BrightYellowRosesBouquet;
 
 	public void mouseHover(String Menu) {
 		Actions action = new Actions(driver);

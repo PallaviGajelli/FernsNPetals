@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-<listeners>
-     <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
-</listeners>
-  <test parallel="methods" thread-count="5" name="Test">
+<!-- <suite name="Suite" parallel="tests" thread-count="6" > -->
+ <test  name="Test">
     <classes>
-      <class name="fernsNPetals.datadrivenTCs.searchboxDDT"/>
-      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm"/>
+      <class name="fernsNPetals.TestSuites.All_filters_in_category_page_TestSuite"/>
+    <!--   <class name="fernsNPetals.TestSuites.Currency_TestSuite"/>
+      <class name="fernsNPetals.TestSuites.Plants_TestSuite"/> -->
+     
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

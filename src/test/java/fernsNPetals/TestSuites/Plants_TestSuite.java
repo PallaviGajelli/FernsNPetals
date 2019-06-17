@@ -34,8 +34,6 @@ public class Plants_TestSuite extends TestBase {
 	public static String extentReport;
 	public static String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())
 			.toString();
-	
-	
 	@BeforeTest
 	public void FNP_FNP_Application_001() {
 		extentReport = "Plants_TestSuite" + TimeStamp + ".html";
@@ -54,7 +52,7 @@ public class Plants_TestSuite extends TestBase {
 			System.err.println("Application is loading as per expected responce time");
 			logger.log(LogStatus.INFO, "Page Load Time: " + Total_Time);
 		} else {
-			logger.log(LogStatus.INFO, "Application is not loading as per expected responce time");
+			logger.log(LogStatus.WARNING, "Application is not loading as per expected responce time");
 			System.err.println("Application is not loading as per expected responce time");
 			logger.log(LogStatus.INFO, "Page Load Time: " + Total_Time);
 		}
@@ -62,22 +60,18 @@ public class Plants_TestSuite extends TestBase {
 		System.out.println("Extent report path:" +extentReport);
 	}
 
+	
+
+
 	@AfterTest
-	public void flushExtent() {
-		report.flush();
-	}
-
-
-//	@AfterTest
-//	public void tearDown() throws IOException {
-//		// Delete evrything so that test suite can be reusable next time.
-//
-//		driver.quit();
+	public void tearDown() throws IOException {
+		// Delete evrything so that test suite can be reusable next time.
+      report.flush();
+		driver.quit();
 //		Runtime rt = Runtime.getRuntime();
 //		Process proc = rt.exec("taskkill /im chrome.exe /f /t");
-//	}
-
-
+	}
+	
 	@Test(priority = 1)
 	public void FNP_FNP_Application_002() throws InterruptedException {
 		try {
@@ -89,7 +83,7 @@ public class Plants_TestSuite extends TestBase {
 			HomePage.homepageverification();
 			logger.log(LogStatus.INFO, "FNP_FNP Application _002 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "FNP_FNP Application _002 is failed");
+			logger.log(LogStatus.FAIL, "FNP_FNP Application _002 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
@@ -134,9 +128,9 @@ public class Plants_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "Fnp_Plants_003 is passed");
 		} catch (Exception e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_003 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_003 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
@@ -147,8 +141,8 @@ public class Plants_TestSuite extends TestBase {
 			
 			logger = report.startTest("Fnp_Plants_004");
 			logger.log(LogStatus.INFO, "Fnp_Plants_004:");
-			GiftPage GiftPage= new GiftPage();
-			GiftPage= PageFactory.initElements(driver, GiftPage.getClass());
+			GiftPage GiftPage=new GiftPage();
+			GiftPage=PageFactory.initElements(driver, GiftPage.getClass());
 			GiftPage.vrify("H_Marvellous_Bonsai_Plant");
  //		b) Bonsai Beauty,Cost,Reviews
 		    GiftPage.vrify("H_Marvellous_Bonsai_Plant");
@@ -167,7 +161,7 @@ public class Plants_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "Fnp_Plants_004 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_004 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_004 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
@@ -180,69 +174,65 @@ public class Plants_TestSuite extends TestBase {
 		try {
 			logger = report.startTest("Fnp_Plants_005");
 			logger.log(LogStatus.INFO, "Fnp_Plants_005:");
-			GiftPage GiftPage= new GiftPage();
-			GiftPage= PageFactory.initElements(driver, GiftPage.getClass());
+			GiftPage GiftPage=new GiftPage();
+			GiftPage=PageFactory.initElements(driver, GiftPage.getClass());
 //			6.Click on continue button
-			GiftPage.click("buynowbutton");
+			Thread.sleep(1000);
+			GiftPage.buynowbutton.click();
 			Thread.sleep(1000);
 //		*Note:Expected step1 has to be verified
 //		1.Browser should display an  message 'select Delivery Area to continue'
 			GiftPage.vrify("pincodealert");
 			logger.log(LogStatus.INFO, "Fnp_Plants_005 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_005 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_005 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 			
 		}
 	}
-
 	@Test(priority = 5)
 	public void Fnp_Plants_006() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_006");
-			GiftPage GiftPage= new GiftPage();
-			GiftPage= PageFactory.initElements(driver, GiftPage.getClass());
-			logger.log(LogStatus.INFO, "Fnp_Plants_006:");
-			Thread.sleep(1000);
+	        logger.log(LogStatus.INFO, "Fnp_Plants_006:");
+	        GiftPage GiftPage=new GiftPage();
+			GiftPage=PageFactory.initElements(driver, GiftPage.getClass());
+//			5.Enter Area/pincode in the texbox
+			 Thread.sleep(1000);
 			GiftPage.searchaddressbox.sendKeys("hyderabad"); 
 
-//			6.Select suggestions under the textbox
-			WebDriverWait wait = new WebDriverWait(driver, 15);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pac-item']")));
-            GiftPage.clickfirstAddressintheList(driver);
-				Thread.sleep(1000);
-//			7.Click on Change Date Link
-				// GiftPage.click("datetimeshipping");
-//			8.Select Delivery date
-				// GiftPage.selectDayAfterTomorrow();
-//			9.Click on Add To Cart Button
-//				WebDriverWait wait = new WebDriverWait(driver, 15);
-//				wait.until(ExpectedConditions.invisibilityOf(GiftPage.addtocartbutton));
-				GiftPage.addtocartbutton.click();
-				Thread.sleep(2000);
-//			10.Click on continue with Addon
-				GiftPage.addoncheckbox.click();
+//		6.Select suggestions under the textbox
+			GiftPage.clickfirstAddressintheList(driver);
+			Thread.sleep(1000);
+//		7.Click on Change Date Link
+			// GiftPage.click("datetimeshipping");
+//		8.Select Delivery date
+			// GiftPage.selectDayAfterTomorrow();
+//		9.Click on Add To Cart Button
+			GiftPage.addtocartbutton.click();
+			Thread.sleep(2000);
+//		10.Click on continue with Addon
+			GiftPage.addoncheckbox.click();
 
-				GiftPage.addonbutton.click();
-				Thread.sleep(1000);
-//			*Note:Expected step1 has to be verified
-		//	
-//			1.Browser should display the added product in the Cart
-				GiftPage.vrify("Marvellous_Bonsai_Plant_AddedToCart");
-				GiftPage.vrify("addonAddedToCart");
+			GiftPage.addonbutton.click();
+			Thread.sleep(1000);
+//		*Note:Expected step1 has to be verified
+	//	
+//		1.Browser should display the added product in the Cart
+			GiftPage.vrify("Marvellous_Bonsai_Plant_AddedToCart");
+			GiftPage.vrify("addonAddedToCart");
 				
 			logger.log(LogStatus.INFO, "Fnp_Plants_006 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_006 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_006 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
-
 	@Test(priority = 6)
 	public void Fnp_Plants_007() throws InterruptedException {
 		try {
@@ -274,13 +264,12 @@ public class Plants_TestSuite extends TestBase {
 			
 			logger.log(LogStatus.INFO, "Fnp_Plants_007 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_007 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_007 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
-
 	@Test(priority = 7)
 	public void Fnp_Plants_008() throws InterruptedException {
 		try {
@@ -303,7 +292,7 @@ public class Plants_TestSuite extends TestBase {
 			
 			logger.log(LogStatus.INFO, "Fnp_Plants_008 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_008 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_008 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
@@ -319,31 +308,37 @@ public class Plants_TestSuite extends TestBase {
 			GiftPage GiftPage= new GiftPage();
 			GiftPage= PageFactory.initElements(driver, GiftPage.getClass());
 			GiftPage.searchaddressbox.clear();
-			GiftPage.searchaddressbox.sendKeys("500084"); 
+			Thread.sleep(1000);
+		    GiftPage.searchaddressbox.sendKeys("500084"); 
+
 //		*Note:Executed step1 has to be verified
 			boolean add=GiftPage.hybd500084.getText().contentEquals("Hyderabad, Telangana, India");
 			Assert.assertEquals(add, true);
-			GiftPage.hybd500084.click();
+			//GiftPage.hybd500084.click();
 			System.out.println("Browser is displaying suggestions under the textbox for valid add");
 
 //		6.Clear the data and enter Invalid pin code
 			GiftPage.searchaddressbox.clear();
+			Thread.sleep(1000);
 			GiftPage.sendkeys("searchaddressbox", "dfgdgdeg");	
 //		*Note:Executed step2 has to be verified
 			GiftPage.IsAddressintheListDisplayed(driver);
 			System.out.println("Browser is not displaying suggestions under the textbox for invalid add");
 			
 //		7.Clear the data and Enter pin 533249
+			
 			GiftPage.searchaddressbox.clear();
+			Thread.sleep(1000);
 			GiftPage.sendkeys("searchaddressbox", "533249");
 			//GiftPage.searchaddressbox.sendKeys("533249"); 	
 //		*Note:Executed step3 has to be verified.
 			boolean add2=GiftPage.hybd533249.getText().contentEquals("Andhra Pradesh, India");
 			Assert.assertEquals(add2, true);
 			System.out.println("Browser is displaying suggestions under the textbox for valid add");
+			//GiftPage.click("hybd533249");
 		    logger.log(LogStatus.INFO, "Fnp_Plants_009 is passed");
 		} catch (Throwable  e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_009 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_009 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
@@ -371,9 +366,9 @@ public class Plants_TestSuite extends TestBase {
 			GiftPage.vrify("pincodealert");
 			logger.log(LogStatus.INFO, "Fnp_Plants_013 is passed");
 		} catch (Exception e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_013 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_013 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 		}
 	}
 
@@ -393,14 +388,13 @@ public class Plants_TestSuite extends TestBase {
 			GiftPage.vrify("pincodealert");
 			logger.log(LogStatus.INFO, "Fnp_Plants_010 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_010 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_010 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
-
 	@Test(priority = 11)
 	public void Fnp_Plants_011() throws InterruptedException {
 		try {
@@ -425,13 +419,12 @@ public class Plants_TestSuite extends TestBase {
 			GiftPage.selectDayAfterTomorrow(driver);
 			logger.log(LogStatus.INFO, "Fnp_Plants_011 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_011 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_011 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
-
 	@Test(priority = 12)
 	public void Fnp_Plants_012() throws InterruptedException {
 		try {
@@ -452,16 +445,14 @@ public class Plants_TestSuite extends TestBase {
 		GiftPage.VerifyCheckoutPage(driver);
 			logger.log(LogStatus.INFO, "Fnp_Plants_012 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_012 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_012 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
-
 	
-
 	@Test(priority = 13)
 	public void Fnp_Plants_014() throws InterruptedException {
 		try {
@@ -471,6 +462,12 @@ public class Plants_TestSuite extends TestBase {
 			GiftPage= PageFactory.initElements(driver, GiftPage.getClass());
 			driver.navigate().back();
 			Thread.sleep(2000);
+			GiftPage.cartbtn.click();
+			GiftPage.delete_item_0.click();
+			GiftPage.deleteYesBtn.click();
+			Thread.sleep(1000);
+			GiftPage.CartClose.click();
+			Thread.sleep(1000);
 //			9.Click on Buy Now button 
 			GiftPage.click("buynowbutton");
 			Thread.sleep(2000);
@@ -478,19 +475,18 @@ public class Plants_TestSuite extends TestBase {
 			GiftPage.click("addoncheckbox");
 			Thread.sleep(1000);
 			GiftPage.click("addonbutton");
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 //		*Note:Expected step1 has to be verified
 			GiftPage.VerifyCheckoutPage(driver);
 			logger.log(LogStatus.INFO, "Fnp_Plants_014 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_004 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_004 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
-
 	@Test(priority = 14)
 	public void Fnp_Plants_015() throws InterruptedException {
 		try {
@@ -502,9 +498,9 @@ public class Plants_TestSuite extends TestBase {
 			CheckoutPage.checkoutPageVerification();
 			logger.log(LogStatus.INFO, "Fnp_Plants_015 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_015 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_015 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
@@ -519,13 +515,14 @@ public class Plants_TestSuite extends TestBase {
 //need new loginid every time
 			logger.log(LogStatus.INFO, "Fnp_Plants_016 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_016 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_016 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
+
 
 	@Test(priority = 16)
 	public void Fnp_Plants_017() throws InterruptedException {
@@ -545,109 +542,114 @@ public class Plants_TestSuite extends TestBase {
 				System.out.println("Browser Remained same with entered data");
 			logger.log(LogStatus.INFO, "Fnp_Plants_017 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_017 is failed");
-			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
-			throw e;
-		}
-	}
-
-	@Test(priority = 17)
-	public void Fnp_Plants_018() throws InterruptedException {
-		try {
-			logger = report.startTest("Fnp_Plants_018");
-			logger.log(LogStatus.INFO, "Fnp_Plants_018:Verify 'Continue' button functionality with Valid mail id  in Checkout log-in page");
-			CheckoutPage CheckoutPage = new CheckoutPage();
-			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-//			11.In checkout login page,Click on email id 
-//			12.Enter Valid mail id and click on continue button i.e Existing user
-			CheckoutPage.loginFnP();
-//			*Note:Expected step1 has to be verified
-			CheckoutPage.verify("orderenDeliveryDetailsPage");
-
-			logger.log(LogStatus.INFO, "Fnp_Plants_018 is passed");
-		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_018 is failed");
-			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
-			throw e;
-		}
-
-	}
-
-	@Test(priority = 18)
-	public void Fnp_Plants_019() throws InterruptedException {
-		try {
-			logger = report.startTest("Fnp_Plants_019");
-			logger.log(LogStatus.INFO, "Fnp_Plants_019:Verify 'Continue' button functionality with In-valid Password in Checkout log-in page");
-			CheckoutPage CheckoutPage = new CheckoutPage();
-			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-//			12.Enter mail id and click on continue button
-				CheckoutPage.loginEmailID.sendKeys(prop.getProperty("mailID")); 
-				Thread.sleep(1000);
-				CheckoutPage.continuebutton.click();
-				Thread.sleep(1000);
-//			13.Enter Invalid Password and click on continue button
-				CheckoutPage.pwd.sendKeys("12345"); 
-				Thread.sleep(1000);
-				CheckoutPage.continuebutton.click();
-				Thread.sleep(1000);
-//			*Note:Expected step1 has to be verified
-				CheckoutPage.verify("errorLogin");
-			logger.log(LogStatus.INFO, "Fnp_Plants_019 is passed");
-		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_019 is failed");
-			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
-			throw e;
-		}
-	}
-
-	@Test(priority = 19)
-	public void Fnp_Plants_020() throws InterruptedException {
-		try {
-			logger = report.startTest("Fnp_Plants_020");
-			logger.log(LogStatus.INFO, "Fnp_Plants_020:Verify UI of the Delivery Details page");
-			CheckoutPage CheckoutPage = new CheckoutPage();
-			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-			Thread.sleep(1000);
-			CheckoutPage.loginEmailID.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-			Thread.sleep(1000);
-			CheckoutPage.loginFnP();
-			Thread.sleep(1000);
-//		*Note:Expected step1 has to be verified
-			CheckoutPage.verify("orderenDeliveryDetailsPage");
-
-	//1.Browser should navigate to Order & Delivery details page
-	//shows the following fields:
-	//a)Bonsai Beauty with quantity and price
-			CheckoutPage.verify("MarvellousBonsaiPlantPriceandQty");
-	//b)Delivery date and time
-			CheckoutPage.verify("Deliverydateandtime");
-	//c)Change button
-			CheckoutPage.verify("changebtn");
-	//d)Addon 
-			CheckoutPage.verify("addon");
-	//e)Add Delivery address
-			CheckoutPage.verify("addnewaddress");
-	//f)Free Message card
-			
-			JavascriptExecutor js1 = (JavascriptExecutor) driver;
-			js1.executeScript("arguments[0].scrollIntoView();", CheckoutPage.FreeMessagecard);
-			CheckoutPage.verify("FreeMessagecard");
-	//g)senders details 
-			CheckoutPage.verify("sendersdetails");
-			logger.log(LogStatus.INFO, "Fnp_Plants_020 is passed");
-		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_020 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_017 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
-
 	}
+	// this test case is repeated in Fnp_Plants_020
+//		@Test(priority = 17)
+//		public void Fnp_Plants_018() throws InterruptedException {
+//			try {
+//				logger = report.startTest("Fnp_Plants_018");
+//				logger.log(LogStatus.INFO, "Fnp_Plants_018:Verify 'Continue' button functionality with Valid mail id  in Checkout log-in page");
+//				CheckoutPage CheckoutPage = new CheckoutPage();
+//				CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
+////				11.In checkout login page,Click on email id 
+////				12.Enter Valid mail id and click on continue button i.e Existing user
+//				CheckoutPage.loginEmailID.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+//				Thread.sleep(1000);
+//				CheckoutPage.loginFnP();
+////				*Note:Expected step1 has to be verified
+//				CheckoutPage.verify("orderenDeliveryDetailsPage");
+	//
+//				logger.log(LogStatus.INFO, "Fnp_Plants_018 is passed");
+//			} catch (Throwable e) {
+//				logger.log(LogStatus.INFO, "Fnp_Plants_018 is failed");
+//				logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
+//				logger.log(LogStatus.INFO, "Exception occured is :" + e);
+//				throw e;
+//			}
+	//
+//		}
 
-	@Test(priority = 20)
+		@Test(priority = 17)
+		public void Fnp_Plants_019() throws InterruptedException {
+			try {
+				logger = report.startTest("Fnp_Plants_019");
+				logger.log(LogStatus.INFO, "Fnp_Plants_019:Verify 'Continue' button functionality with In-valid Password in Checkout log-in page");
+				CheckoutPage CheckoutPage = new CheckoutPage();
+				CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
+//				12.Enter mail id and click on continue button
+				    CheckoutPage.loginEmailID.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+				    Thread.sleep(1000);
+					CheckoutPage.loginEmailID.sendKeys(prop.getProperty("mailID")); 
+					Thread.sleep(1000);
+					CheckoutPage.continuebutton.click();
+					Thread.sleep(1000);
+//				13.Enter Invalid Password and click on continue button
+					CheckoutPage.pwd.sendKeys("12345"); 
+					Thread.sleep(1000);
+					CheckoutPage.continuebutton.click();
+					Thread.sleep(1000);
+//				*Note:Expected step1 has to be verified
+					CheckoutPage.verify("errorLogin");
+				logger.log(LogStatus.INFO, "Fnp_Plants_019 is passed");
+			} catch (Throwable e) {
+				logger.log(LogStatus.FAIL, "Fnp_Plants_019 is failed");
+				logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
+				logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+				throw e;
+			}
+		}
+		@Test(priority = 18)
+		public void Fnp_Plants_020() throws InterruptedException {
+			try {
+				logger = report.startTest("Fnp_Plants_020");
+				logger.log(LogStatus.INFO, "Fnp_Plants_020:Verify UI of the Delivery Details page");
+				CheckoutPage CheckoutPage = new CheckoutPage();
+				CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
+				Thread.sleep(1000);
+				CheckoutPage.editloginEmailID.click();
+				Thread.sleep(1000);
+				CheckoutPage.loginEmailID.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+				Thread.sleep(1000);
+				CheckoutPage.loginFnP("Testcsurnamec@gmail.com","Cleena@123");
+				Thread.sleep(1000);
+//			*Note:Expected step1 has to be verified
+				CheckoutPage.verify("orderenDeliveryDetailsPage");
+
+		//1.Browser should navigate to Order & Delivery details page
+		//shows the following fields:
+		//a)Bonsai Beauty with quantity and price
+				CheckoutPage.verify("MarvellousBonsaiPlantPriceandQty");
+		//b)Delivery date and time
+				CheckoutPage.verify("Deliverydateandtime");
+		//c)Change button
+				CheckoutPage.verify("changebtn");
+		//d)Addon 
+				CheckoutPage.verify("addon");
+		//e)Add Delivery address
+				CheckoutPage.verify("addnewaddress");
+		//f)Free Message card
+				
+				JavascriptExecutor js1 = (JavascriptExecutor) driver;
+				js1.executeScript("arguments[0].scrollIntoView();", CheckoutPage.FreeMessagecard);
+				CheckoutPage.verify("FreeMessagecard");
+		//g)senders details 
+				CheckoutPage.verify("sendersdetails");
+				logger.log(LogStatus.INFO, "Fnp_Plants_020 is passed");
+			} catch (Throwable e) {
+				logger.log(LogStatus.FAIL, "Fnp_Plants_020 is failed");
+				logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
+				logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+				throw e;
+			}
+
+		}
+
+	@Test(priority = 19)
 	public void Fnp_Plants_021() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_021");
@@ -655,7 +657,9 @@ public class Plants_TestSuite extends TestBase {
 			CheckoutPage CheckoutPage = new CheckoutPage();
 			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
 //			14.Click Change button
-			CheckoutPage.changebtn.click();
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", CheckoutPage.changebtn);
+			//CheckoutPage.changebtn.click();
 			Thread.sleep(1000);
 			
 //			*Note:Expected step1 has to verified
@@ -668,52 +672,16 @@ public class Plants_TestSuite extends TestBase {
 			CheckoutPage.verify("DeliveryDate");
 			logger.log(LogStatus.INFO, "Fnp_Plants_021 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_021 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_021 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 21)
-	public void Fnp_Plants_022() throws InterruptedException {
-		try {
-			logger = report.startTest("Fnp_Plants_022");
-			logger.log(LogStatus.INFO, "Fnp_Plants_022:Verify functionality of the 'Delete' button in Delivery details page");
-			Thread.sleep(1000);
-			CheckoutPage CheckoutPage = new CheckoutPage();
-			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-//			14.Click on Delete button in delivery details page
-			CheckoutPage.deleteProductatcheckout.click();
-			Thread.sleep(1000);
-//			*Note:Expected step1 has to verified
-			CheckoutPage.verify("deleteProductalert");
-			Thread.sleep(1000);
-//			15.Click on yes button
-			CheckoutPage.deleteProductalertYesBtn.click();
-			Thread.sleep(1000);
-//			*Note:Expected step2 has to verified
-			CheckoutPage.verify("cartisEmptyMsg");
-			CheckoutPage.verify("StartShoppingNowBtn");
-//			16.Click on start shop now button
-			CheckoutPage.StartShoppingNowBtn.click();
-			Thread.sleep(1000);
-			
-//			*Note:Expected step3 has to verified
-			String homeurl = driver.getCurrentUrl();
-			Assert.assertEquals(homeurl,prop.getProperty("url"));
-			System.out.println("you are at HomePage");
-			logger.log(LogStatus.INFO, "Fnp_Plants_022 is passed");
-		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_022 is failed");
-			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
-			throw e;
-		}
+	
 
-	}
-
-	@Test(priority = 22)
+	@Test(priority = 20)
 	public void Fnp_Plants_023() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_023");
@@ -731,14 +699,14 @@ public class Plants_TestSuite extends TestBase {
 			CheckoutPage.verify("sendersdetails");
 			logger.log(LogStatus.INFO, "Fnp_Plants_023 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_023 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_023 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 23)
+	@Test(priority = 21)
 	public void Fnp_Plants_024() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_024");
@@ -746,23 +714,23 @@ public class Plants_TestSuite extends TestBase {
 			CheckoutPage CheckoutPage = new CheckoutPage();
 			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
 			Thread.sleep(1000);
-			JavascriptExecutor js1 = (JavascriptExecutor) driver;
-			js1.executeScript("arguments[0].scrollouttoView();",CheckoutPage.SendersDetailsheading);
+//			JavascriptExecutor js1 = (JavascriptExecutor) driver;
+//			js1.executeScript("arguments[0].scrollouttoView();",CheckoutPage.SendersDetailsheading);
 //			16.Click on the save address button
 			CheckoutPage.filladdressToDelivery(driver, "", "", "");
 //			*Note:Expected step1 has to be verified
 			CheckoutPage.verify("EmptyAddressAlertMsg");
 			logger.log(LogStatus.INFO, "Fnp_Plants_024 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_024 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_024 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
 
-	@Test(priority = 24)
+	@Test(priority = 22)
 	public void Fnp_Plants_025() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_025");
@@ -784,14 +752,14 @@ public class Plants_TestSuite extends TestBase {
 		    System.out.println("Browser is displaying Recipients Name in the text field");
 			logger.log(LogStatus.INFO, "Fnp_Plants_025 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_025 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_025 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 25)
+	@Test(priority = 23)
 	public void Fnp_Plants_026() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_026");
@@ -809,15 +777,15 @@ public class Plants_TestSuite extends TestBase {
 		    System.out.println("Browser is displaying Recipients Name in the text field");
 			logger.log(LogStatus.INFO, "Fnp_Plants_026 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_026 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_026 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
 
-	@Test(priority = 26)
+	@Test(priority = 24)
 	public void Fnp_Plants_027() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_027");
@@ -835,14 +803,14 @@ public class Plants_TestSuite extends TestBase {
 		    System.out.println("Browser is displaying Recipients Name in the text field");
 			logger.log(LogStatus.INFO, "Fnp_Plants_027 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_027 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_027 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 27)
+	@Test(priority = 25)
 	public void Fnp_Plants_028() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_028");
@@ -861,15 +829,15 @@ public class Plants_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "Fnp_Plants_028 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_028 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_028 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
 
-	@Test(priority = 28)
+	@Test(priority = 26)
 	public void Fnp_Plants_029() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_029");
@@ -894,14 +862,14 @@ public class Plants_TestSuite extends TestBase {
 		    System.out.println("Browser is displaying Recipients Address in the text field");
 			logger.log(LogStatus.INFO, "Fnp_Plants_029 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_029 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_029 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 29)
+	@Test(priority = 27)
 	public void Fnp_Plants_030() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_030");
@@ -923,15 +891,15 @@ public class Plants_TestSuite extends TestBase {
 		    System.out.println("Browser is displaying Recipients mobile no in the text field");
 			logger.log(LogStatus.INFO, "Fnp_Plants_030 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_030 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_030 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
 
-	@Test(priority = 30)
+	@Test(priority = 28)
 	public void Fnp_Plants_031() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_031");
@@ -946,14 +914,14 @@ public class Plants_TestSuite extends TestBase {
 		    CheckoutPage.verify("invalidrMobile");
 			logger.log(LogStatus.INFO, "Fnp_Plants_031 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_031 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_031 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 31)
+	@Test(priority = 29)
 	public void Fnp_Plants_032() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_032");
@@ -972,15 +940,15 @@ public class Plants_TestSuite extends TestBase {
 		    System.out.println("Browser is displaying Recipients email id in the text field");
 			logger.log(LogStatus.INFO, "Fnp_Plants_032 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_032 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_032 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
 
-	@Test(priority = 32)
+	@Test(priority = 30)
 	public void Fnp_Plants_033() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_033");
@@ -998,14 +966,14 @@ public class Plants_TestSuite extends TestBase {
 		    CheckoutPage.verify("invalidrMobile");
 			logger.log(LogStatus.INFO, "Fnp_Plants_033 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_033 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_033 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 33)
+	@Test(priority = 31)
 	public void Fnp_Plants_034() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_034");
@@ -1028,15 +996,15 @@ public class Plants_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "Fnp_Plants_034 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_034 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_034 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
 
-	@Test(priority = 34)
+	@Test(priority = 32)
 	public void Fnp_Plants_035() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_035");
@@ -1069,14 +1037,14 @@ public class Plants_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "Fnp_Plants_035 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_035 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_035 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 35)
+	@Test(priority = 33)
 	public void Fnp_Plants_036() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_036");
@@ -1109,15 +1077,15 @@ public class Plants_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "Fnp_Plants_036 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_036 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_036 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 
 	}
 
-	@Test(priority = 36)
+	@Test(priority = 34)
 	public void Fnp_Plants_037() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_037");
@@ -1134,14 +1102,14 @@ public class Plants_TestSuite extends TestBase {
 		    System.out.println("Your consent is required msg is dispayed");
      		logger.log(LogStatus.INFO, "Fnp_Plants_037 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_037 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_037 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 	}
 
-	@Test(priority = 37)
+	@Test(priority = 35)
 	public void Fnp_Plants_038() throws InterruptedException {
 		try {
 			logger = report.startTest("Fnp_Plants_038");
@@ -1158,9 +1126,51 @@ public class Plants_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "Fnp_Plants_038 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "Fnp_Plants_038 is failed");
+			logger.log(LogStatus.FAIL, "Fnp_Plants_038 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
-			logger.log(LogStatus.INFO, "Exception occured is :" + e);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+			throw e;
+		}
+
+	}
+	@Test(priority = 36)
+	public void Fnp_Plants_022() throws InterruptedException {
+		try {
+			logger = report.startTest("Fnp_Plants_022");
+			logger.log(LogStatus.INFO, "Fnp_Plants_022:Verify functionality of the 'Delete' button in Delivery details page");
+			
+			CheckoutPage CheckoutPage = new CheckoutPage();
+			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
+			Thread.sleep(1000);
+			CheckoutPage.editSavedProduct.click();
+			Thread.sleep(1000);
+//			14.Click on Delete button in delivery details page
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click();", CheckoutPage.deleteProductatcheckout);
+			//CheckoutPage.deleteProductatcheckout.click();
+			Thread.sleep(1000);
+//			*Note:Expected step1 has to verified
+			CheckoutPage.verify("deleteProductalert");
+			Thread.sleep(1000);
+//			15.Click on yes button
+			CheckoutPage.deleteProductalertYesBtn.click();
+			Thread.sleep(1000);
+//			*Note:Expected step2 has to verified
+			CheckoutPage.verify("cartisEmptyMsg");
+			CheckoutPage.verify("StartShoppingNowBtn");
+//			16.Click on start shop now button
+			CheckoutPage.StartShoppingNowBtn.click();
+			Thread.sleep(1000);
+			
+//			*Note:Expected step3 has to verified
+			String homeurl = driver.getCurrentUrl();
+			Assert.assertEquals(homeurl,prop.getProperty("url"));
+			System.out.println("you are at HomePage");
+			logger.log(LogStatus.INFO, "Fnp_Plants_022 is passed");
+		} catch (Throwable e) {
+			logger.log(LogStatus.FAIL, "Fnp_Plants_022 is failed");
+			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
+			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
 		}
 

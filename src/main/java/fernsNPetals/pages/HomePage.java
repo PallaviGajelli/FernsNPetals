@@ -1,16 +1,11 @@
 package fernsNPetals.pages;
 
-import org.apache.bcel.generic.SWITCH;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import com.google.common.base.CaseFormat;
-
 import fernsNPetals.base.TestBase;
-import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
 
 public class HomePage extends TestBase {
 

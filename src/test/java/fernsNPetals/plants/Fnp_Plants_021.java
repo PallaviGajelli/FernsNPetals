@@ -45,7 +45,11 @@ public class Fnp_Plants_021 extends TestBase{
 			GiftPage.clickfirstAddressintheList(driver);
 		//7.Click on Change Date Link
 			Thread.sleep(2000);
-			GiftPage.SelectDeliveryDate.click();
+			if (GiftPage.datetimeshipping.isDisplayed()) {
+				GiftPage.datetimeshipping.click();	
+			}else {
+				GiftPage.SelectDeliveryDate.click();
+			}
 			Thread.sleep(1000);
 		//8.Select Delivery date
 			GiftPage.selectDayAfterTomorrow(driver);

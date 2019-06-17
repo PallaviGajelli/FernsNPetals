@@ -39,58 +39,51 @@ import fernsNPetals.util.TestUtil;
 public class Currency_TestSuite extends TestBase {
 	static ExtentTest logger;
 	static ExtentReports report;
-	public String extentReport;
-	public String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())
+	public static String extentReport;
+	public static String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())
 			.toString();
-
 	@BeforeTest
-	public void startup() {
-		extentReport = "CurrencyTestSuite" + TimeStamp + ".html";
+	public void FNP_FNP_Application_001() {
+		extentReport = "Currency_TestSuite" + TimeStamp + ".html";
 		report = new ExtentReports(extentReport);
-	}
-
-	@AfterTest
-	public void flush() {
-		report.flush();
-	}
-
-	@BeforeMethod
-	public void Setup() throws Exception {
-
+		logger = report.startTest("Verifying browser launch");
+	
 		long start = System.currentTimeMillis();
 //		1. Launch the FNP Application  in the browser
 		initialization();
 		long finish = System.currentTimeMillis();
 		long Total_Time = (finish - start) / 1000;
 		System.out.println("Page Load Time: " + Total_Time + " Seconds");
-
+		
 		if (Total_Time <= 3) {
-
+			logger.log(LogStatus.INFO, "Application is loading as per expected responce time");
 			System.err.println("Application is loading as per expected responce time");
-
+			logger.log(LogStatus.INFO, "Page Load Time: " + Total_Time);
 		} else {
-
+			logger.log(LogStatus.INFO, "Application is not loading as per expected responce time");
 			System.err.println("Application is not loading as per expected responce time");
-
+			logger.log(LogStatus.INFO, "Page Load Time: " + Total_Time);
 		}
-		System.out.println("Extent report name:" + extentReport);
-
+		logger.log(LogStatus.INFO, "FNP_FNP Application _001 is passed");
+		System.out.println("Extent report path:" +extentReport);
 	}
 
-	@AfterMethod
+
+	@AfterTest
 	public void tearDown() throws IOException, InterruptedException {
 		// Delete evrything so that test suite can be reusable next time.
 		Thread.sleep(2000);
+		report.flush();
 		driver.quit();
-		Runtime rt = Runtime.getRuntime();
-		Process proc = rt.exec("taskkill /im chrome.exe /f /t");
+//		Runtime rt = Runtime.getRuntime();
+//		Process proc = rt.exec("taskkill /im chrome.exe /f /t");
 	}
 
 	@Test(priority = 1)
 	public void CurrencyTC_01() throws InterruptedException {
 		try {
 			logger = report.startTest("CurrencyTC_01");
-			logger.log(LogStatus.INFO, "TC_01:Verify  user able to select the \r\n" + "Currency in scroll bar");
+			logger.log(LogStatus.INFO, "TC_01:Verify  user able to select the Currency in scroll bar");
 			HomePage HomePage = new HomePage();
 			HomePage = PageFactory.initElements(driver, HomePage.getClass());
 //			2.Mouse over the currency header
@@ -106,9 +99,10 @@ public class Currency_TestSuite extends TestBase {
 			logger.log(LogStatus.INFO, "Browser is displaying the Currency EUR in header");
 			logger.log(LogStatus.INFO, "CurrencyTC_01 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "CurrencyTC_01 is failed");
+			logger.log(LogStatus.FAIL, "CurrencyTC_01 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+			throw e;
 		}
 	}
 
@@ -123,11 +117,7 @@ public class Currency_TestSuite extends TestBase {
 			FlowersPage = PageFactory.initElements(driver, FlowersPage.getClass());
 			GiftPage GiftPage = new GiftPage();
 			GiftPage = PageFactory.initElements(driver, GiftPage.getClass());
-//			2.Mouse over the currency header
-			HomePage.mouseHover("currency_sym");
 
-//			3.Click on ‘EUR-Euro’
-			HomePage.Euro.click();
 //			4.Mouse over ‘Anniversary ’ link
 			HomePage.mouseHover("anniversarymenu");
 //			5.Mouse over flowers
@@ -152,9 +142,10 @@ public class Currency_TestSuite extends TestBase {
 			GiftPage.vrify("buynowbutton");
 			logger.log(LogStatus.INFO, "CurrencyTC_02 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "CurrencyTC_02 is failed");
+			logger.log(LogStatus.FAIL, "CurrencyTC_02 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+			throw e;
 		}
 
 	}
@@ -170,24 +161,13 @@ public class Currency_TestSuite extends TestBase {
 			FlowersPage = PageFactory.initElements(driver, FlowersPage.getClass());
 			GiftPage GiftPage = new GiftPage();
 			GiftPage = PageFactory.initElements(driver, GiftPage.getClass());
-//			2.Mouse over the currency header
-			HomePage.mouseHover("currency_sym");
-//			3.Click on ‘EUR-Euro’
-			HomePage.Euro.click();
-//			4.Mouse over ‘Anniversary ’ link
-			HomePage.mouseHover("anniversarymenu");
-//			5.Mouse over flowers
-			FlowersPage.anniversary_flowers.click();
-//			6.Click on ‘Vivd-Red Roses Bouquet ’
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].click();", FlowersPage.VividRedRosesBouquet);
-			GiftPage.navigateToCart(driver);
-			Thread.sleep(2000);
+
 //			7.Enter Area
 			GiftPage.searchaddressbox.sendKeys("Kondapur");
 			Thread.sleep(1000);
 			GiftPage.searchaddressbox.sendKeys(Keys.ENTER);
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 //			8.Select delivery date
 			GiftPage.selectDate.click();
 			// js.executeScript("arguments[0].click();", GiftPage.selectDate);
@@ -226,11 +206,19 @@ public class Currency_TestSuite extends TestBase {
 			String crrencycheck3 = GiftPage.subtotaladdon.getText();
 			Assert.assertEquals(crrencycheck3.contains("EUR"), true);
 			System.out.println("Sub total of addon price is in EUR");
+			Thread.sleep(1000);
+			GiftPage.delete_item_0.click();
+			Thread.sleep(1000);
+			GiftPage.deleteYesBtn.click();
+			Thread.sleep(1000);
+			GiftPage.CartClose.click();
+			Thread.sleep(1000);
 			logger.log(LogStatus.INFO, "CurrencyTC_03 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "CurrencyTC_03 is failed");
+			logger.log(LogStatus.FAIL, "CurrencyTC_03 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+			throw e;
 		}
 	}
 
@@ -247,52 +235,30 @@ public class Currency_TestSuite extends TestBase {
 			GiftPage = PageFactory.initElements(driver, GiftPage.getClass());
 			CheckoutPage CheckoutPage = new CheckoutPage();
 			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-//			2.Mouse over the currency header
-			HomePage.mouseHover("currency_sym");
-//			3.Click on ‘EUR-Euro’
-			HomePage.Euro.click();
-//			4.Mouse over ‘Anniversary ’ link
-			HomePage.mouseHover("anniversarymenu");
-//			5.Mouse over flowers
-			FlowersPage.anniversary_flowers.click();
-//			6.Click on ‘Vivd-Red Roses Bouquet ’
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].click();", FlowersPage.VividRedRosesBouquet);
-			GiftPage.navigateToCart(driver);
-			Thread.sleep(2000);
-//			7.Enter Area
-			GiftPage.searchaddressbox.sendKeys("Kondapur");
-			Thread.sleep(1000);
-			GiftPage.searchaddressbox.sendKeys(Keys.ENTER);
-			Thread.sleep(1000);
-//			8.Select delivery date
-			GiftPage.selectDate.click();
-			Thread.sleep(1000);
-			GiftPage.selectDayAfterTomorrow(driver);
-			// js.executeScript("arguments[0].click();", GiftPage.selectDate);
-			Thread.sleep(2000);
-//			9.Select shipping method as ‘Stanard delivery’
-			js.executeScript("arguments[0].click();", GiftPage.StdDeliveryunderCalender);
-//			10.Select time slot
-			js.executeScript("arguments[0].click();", GiftPage.TSlot12to15undercalender);
+			
 //			11.Click on ‘Buy Now’ button
 			js.executeScript("arguments[0].click();", GiftPage.buynowbutton);
 //			12.Click on continue with one add-on
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			GiftPage.addoncheckbox.click();
 			GiftPage.addonbutton.click();
+			Thread.sleep(2000);
 //			Note:Expected step1 has to be verified
 			GiftPage.VerifyCheckoutPage(driver);
+			Thread.sleep(2000);
 //			13.Enter Email id and click on continue button
 //			14.Enter Password and click on continue button
-			CheckoutPage.loginFnP();
+			CheckoutPage.loginFnP("Testbsurnameb@gmail.com","Bleena@123");
+			Thread.sleep(2000);
 //			Note:Expected step2 has to be verified
 			CheckoutPage.checkCurrency("EUR");
 			logger.log(LogStatus.INFO, "CurrencyTC_04 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "CurrencyTC_04 is failed");
+			logger.log(LogStatus.FAIL, "CurrencyTC_04 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+			throw e;
 		}
 	}
 
@@ -309,45 +275,7 @@ public class Currency_TestSuite extends TestBase {
 			GiftPage = PageFactory.initElements(driver, GiftPage.getClass());
 			CheckoutPage CheckoutPage = new CheckoutPage();
 			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-//			2.Mouse over the currency header
-			HomePage.mouseHover("currency_sym");
-//			3.Click on ‘EUR-Euro’
-			HomePage.Euro.click();
-//			4.Mouse over ‘Anniversary ’ link
-			HomePage.mouseHover("anniversarymenu");
-//			5.Mouse over flowers
-			FlowersPage.anniversary_flowers.click();
-//			6.Click on ‘Vivd-Red Roses Bouquet ’
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].click();", FlowersPage.VividRedRosesBouquet);
-			GiftPage.navigateToCart(driver);
-			Thread.sleep(2000);
-//			7.Enter Area
-			GiftPage.searchaddressbox.sendKeys("Kondapur");
-			Thread.sleep(1000);
-			GiftPage.searchaddressbox.sendKeys(Keys.ENTER);
-			Thread.sleep(1000);
-//			8.Select delivery date
-			GiftPage.selectDate.click();
-			Thread.sleep(1000);
-			GiftPage.selectDayAfterTomorrow(driver);
-			// js.executeScript("arguments[0].click();", GiftPage.selectDate);
-			Thread.sleep(2000);
-//			9.Select shipping method as ‘Stanard delivery’
-			js.executeScript("arguments[0].click();", GiftPage.StdDeliveryunderCalender);
-//			10.Select time slot
-			js.executeScript("arguments[0].click();", GiftPage.TSlot12to15undercalender);
-//			11.Click on ‘Buy Now’ button
-			js.executeScript("arguments[0].click();", GiftPage.buynowbutton);
-//			12.Click on continue with one add-on
-			Thread.sleep(1000);
-			GiftPage.addoncheckbox.click();
-			GiftPage.addonbutton.click();
-//			Note:Expected step1 has to be verified
-			GiftPage.VerifyCheckoutPage(driver);
-//			13.Enter Email id and click on continue button
-//			14.Enter Password and click on continue button
-			CheckoutPage.loginFnP();
+
 //			Note:Expected step2 has to be verified
 			CheckoutPage.verify("orderenDeliveryDetailsPage");
 			Thread.sleep(1000);
@@ -365,10 +293,12 @@ public class Currency_TestSuite extends TestBase {
 			Assert.assertEquals(a.contains("EUR"), true);
 			System.out.println("Pay Btn on Payment Options is displyaed with currency EUR");
 			logger.log(LogStatus.INFO, "CurrencyTC_05 is passed");
+			CheckoutPage.deleteAddAndProductWithAddonFromCheckoutPage();
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "CurrencyTC_05 is failed");
+			logger.log(LogStatus.FAIL, "CurrencyTC_05 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
+			throw e;
 		}
 
 	}

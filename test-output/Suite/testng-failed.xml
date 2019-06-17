@@ -1,18 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="fernsNPetals.extentReportListener.ExtentReporterNG"/>
-  </listeners>
-  <test parallel="methods" name="Test(failed)">
+<suite thread-count="6" parallel="classes" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test parallel="classes" name="Test(failed)">
     <classes>
-      <class name="fernsNPetals.datadrivenTCs.ValidAddressForm">
+      <class name="fernsNPetals.TestSuites.Plants_TestSuite">
         <methods>
+          <include name="Fnp_Plants_021"/>
+          <include name="Fnp_Plants_008"/>
+          <include name="Fnp_Plants_006"/>
+          <include name="Fnp_Plants_028"/>
+          <include name="Fnp_Plants_009"/>
+          <include name="Fnp_Plants_004"/>
+          <include name="Fnp_Plants_026"/>
+          <include name="Fnp_Plants_007"/>
+          <include name="Fnp_Plants_029"/>
+          <include name="Fnp_Plants_024"/>
+          <include name="Fnp_Plants_005"/>
+          <include name="Fnp_Plants_027"/>
+          <include name="Fnp_Plants_022"/>
+          <include name="Fnp_Plants_003"/>
+          <include name="Fnp_Plants_025"/>
+          <include name="FNP_FNP_Application_001"/>
+          <include name="Fnp_Plants_020"/>
+          <include name="Fnp_Plants_023"/>
+          <include name="Fnp_Plants_010"/>
+          <include name="Fnp_Plants_032"/>
+          <include name="Fnp_Plants_030"/>
           <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="addressform" invocation-numbers="0 1 2"/>
+          <include name="Fnp_Plants_019"/>
+          <include name="Fnp_Plants_017"/>
+          <include name="Fnp_Plants_015"/>
+          <include name="Fnp_Plants_037"/>
+          <include name="Fnp_Plants_035"/>
+          <include name="Fnp_Plants_038"/>
+          <include name="Fnp_Plants_011"/>
+          <include name="Fnp_Plants_033"/>
+          <include name="Fnp_Plants_014"/>
+          <include name="Fnp_Plants_036"/>
+          <include name="Fnp_Plants_031"/>
+          <include name="Fnp_Plants_012"/>
+          <include name="Fnp_Plants_034"/>
         </methods>
-      </class> <!-- fernsNPetals.datadrivenTCs.ValidAddressForm -->
+      </class> <!-- fernsNPetals.TestSuites.Plants_TestSuite -->
+      <class name="fernsNPetals.TestSuites.All_filters_in_category_page_TestSuite">
+        <methods>
+          <include name="FNP_FNP_Application_001"/>
+          <include name="All_filters_in_category_pageTC_04"/>
+          <include name="All_filters_in_category_pageTC_02"/>
+          <include name="tearDown"/>
+          <include name="All_filters_in_category_pageTC_03"/>
+          <include name="All_filters_in_category_pageTC_01"/>
+        </methods>
+      </class> <!-- fernsNPetals.TestSuites.All_filters_in_category_page_TestSuite -->
+      <class name="fernsNPetals.TestSuites.Currency_TestSuite">
+        <methods>
+          <include name="CurrencyTC_04"/>
+          <include name="CurrencyTC_03"/>
+          <include name="tearDown"/>
+          <include name="CurrencyTC_05"/>
+          <include name="CurrencyTC_02"/>
+          <include name="FNP_FNP_Application_001"/>
+        </methods>
+      </class> <!-- fernsNPetals.TestSuites.Currency_TestSuite -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

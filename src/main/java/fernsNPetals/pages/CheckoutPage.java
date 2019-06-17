@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -56,9 +57,12 @@ public class CheckoutPage extends TestBase {
     public WebElement PayBtnonPaymentOptions;
 	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div[1]/img")
     public WebElement yourPhotoOnProduct;
-	
-	@FindBy(xpath = "//*[@id=\"checkout-container\"]/div[3]/div/div/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div")
-	public WebElement deleteProductatcheckout;
+		                 
+	@FindBy(xpath = "//div[@class='trash']")
+	public WebElement deleteProductatcheckout;//without addon
+	@FindBy(xpath = "//div[@class='cart-products ']/div[1]/div[1]/div[1]")
+	//List<WebElement> elements = driver.findElements(By.xpath("//div[@class='trash']"));
+	public WebElement deleteProductwithAddonatcheckout;
     @FindBy(xpath = "//div[text()='Are you sure you want to delete this item ?']")
     public WebElement deleteProductalert;//Are you sure you want to delete this item ?YesNo
     @FindBy(xpath = "//span[@class='delete-confirm-yes']")
@@ -151,6 +155,8 @@ public class CheckoutPage extends TestBase {
 
 	@FindBy(xpath = "//*[@id=\"loginformEmailId\"]")
 	public WebElement loginEmailID;
+	@FindBy(xpath = "//span[text()='mode_edit']")
+	public WebElement editloginEmailID;
 	@FindBy(xpath = "//*[@id=\"loginPassword\"]")
 	public  WebElement pwd;
 	@FindBy(xpath = "//*[@id=\"submit-check\"]/span[1]/span[1]")
@@ -195,6 +201,12 @@ public class CheckoutPage extends TestBase {
 	public WebElement recepientmobileinSavedAdd;
 	@FindBy(xpath = "//div[@class='saved-address--details']")
 	public WebElement savedaddDetails;
+	@FindBy(xpath = "//span[text()='border_color']")
+	public WebElement editSavedProduct;
+	@FindBy(xpath = "//p[@class='delete-address']")
+	public WebElement deleteSavedAdd;
+	@FindBy(xpath = "//span[text()='Delete']")//delete btn on alert
+	public WebElement deleteaddbtn;
 	
 	
 	
@@ -232,6 +244,38 @@ public class CheckoutPage extends TestBase {
 	
 	//div[ @class='DayPicker-Day DayPicker-Day--selected']
 	String dd;
+	
+	public void deleteAddAndProductWithAddonFromCheckoutPage() throws InterruptedException {
+		Thread.sleep(1000);
+		editSavedProduct.click();
+		Thread.sleep(1000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", deleteSavedAdd);
+		//deleteSavedAdd.click();
+		Thread.sleep(1000);
+		deleteaddbtn.click();
+		Thread.sleep(1000);
+		deleteProductwithAddonatcheckout.click();
+		Thread.sleep(1000);
+		deleteProductalertYesBtn.click();
+		Thread.sleep(2000);
+	}
+	
+	public void deleteAddAndProductWithoutaddonFromCheckout() throws InterruptedException {
+		Thread.sleep(1000);
+		editSavedProduct.click();
+		Thread.sleep(1000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", deleteSavedAdd);
+		//deleteSavedAdd.click();
+		Thread.sleep(1000);
+		deleteaddbtn.click();
+		Thread.sleep(1000);
+		deleteProductatcheckout.click();
+		Thread.sleep(1000);
+		deleteProductalertYesBtn.click();
+		Thread.sleep(2000);
+	}
 	
 	 public void validation(WebElement webelement) {
 		   Assert.assertEquals((webelement.isDisplayed()), true);
@@ -332,12 +376,23 @@ public class CheckoutPage extends TestBase {
 	}
 
 	public void loginFnP() throws InterruptedException {
-
+		
 		loginEmailID.sendKeys("testmeapp1@gmail.com");
 		Thread.sleep(1000);
 		continuebutton.click();
 		Thread.sleep(1000);
 		pwd.sendKeys("test@2018");
+		Thread.sleep(1000);
+		continuebutton.click();
+		Thread.sleep(1000);
+	}
+public void loginFnP(String userid,String Pwd) throws InterruptedException {
+		
+		loginEmailID.sendKeys(userid);
+		Thread.sleep(1000);
+		continuebutton.click();
+		Thread.sleep(1000);
+		pwd.sendKeys(Pwd);
 		Thread.sleep(1000);
 		continuebutton.click();
 		Thread.sleep(1000);

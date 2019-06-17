@@ -32,16 +32,20 @@ public class TC_04 extends TestBase {
 		CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
 //		2.Mouse over Anniversary link
 		HomePage.mouseHover("anniversarymenu");
-		FlowersPage.anniversary_flowers.click();
-//		3.Mouse over Gift type link
-		FlowersPage.mouseHover("GiftTypeFlowers");
+	    FlowersPage.anniversary_flowers.click();
+	    Thread.sleep(2000);
+///////////changed	
+////		3.Mouse over Gift type link
+//		FlowersPage.mouseHover("GiftTypeFlowers");
+//		
+////		4.Click on Roses
+//		FlowersPage.Roses.click();
 		
-//		4.Click on Roses
-		FlowersPage.Roses.click();
-//		5.Mouse over Occasion link
-		HomePage.mouseHover("occassionsmenu");
-		FlowersPage.AnniversaryUnderOccation.isDisplayed();
-		System.out.println("Anniversary Under Occation id displayed");
+////		5.Mouse over Occasion link
+//		HomePage.mouseHover("occassionsmenu");
+//		FlowersPage.AnniversaryUnderOccation.isDisplayed();
+//		System.out.println("Anniversary Under Occation id displayed");
+////////////////////
 //		6.Mouse over the Delivery city
 		FlowersPage.mouseHover("DeliveryCity");
 //		7.Click on Bangalore
@@ -81,10 +85,7 @@ public class TC_04 extends TestBase {
 		  Thread.sleep(1000);
 //		Note:Expected step1 has to be verified
 //		17.Enter valid mail id and Password and click on continue button
-		CheckoutPage.sendkeys("loginEmailID", prop.getProperty("mailID"));
-		CheckoutPage.click("continuebutton");
-		CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
-		CheckoutPage.click("continuebutton");
+		CheckoutPage.loginFnP("Testbsurnameb@gmail.com","Bleena@123");
 		Thread.sleep(1000);
 //		18.Click on Add new address and leave the all fields empty and click on continue button
 		CheckoutPage.filladdressToDelivery(driver, "", "", "", "", "");
@@ -99,6 +100,8 @@ public class TC_04 extends TestBase {
 		CheckoutPage.placeorder(driver);
 		CheckoutPage.paymentOptionspage.isDisplayed();
 		System.out.println("Browser is navigate to Payment page");
+		Thread.sleep(1000);
+		CheckoutPage.deleteAddAndProductWithoutaddonFromCheckout();
 //		
 //		1.It should validation message ‘Please
 //		 Enter valid mail id’
@@ -120,11 +123,11 @@ public class TC_04 extends TestBase {
 	}catch(Exception e) {
 	      throw(e);
 	}
-finally {
-		 driver.quit();
-		 Runtime rt =Runtime.getRuntime();
-		 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
-	}
+//finally {
+//		 driver.quit();
+//		 Runtime rt =Runtime.getRuntime();
+//		 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
+//	}
 }
 
 }

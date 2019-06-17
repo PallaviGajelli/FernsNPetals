@@ -3,23 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="fernsNPetals.TestSuites.Plants_TestSuite">
+      <class name="fernsNPetals.other.testsuite">
         <methods>
-          <include name="Fnp_Plants_021"/>
-          <include name="flushExtent"/>
-          <include name="Fnp_Plants_008"/>
-          <include name="Fnp_Plants_019"/>
-          <include name="Fnp_Plants_006"/>
-          <include name="Fnp_Plants_009"/>
-          <include name="Fnp_Plants_007"/>
-          <include name="Fnp_Plants_018"/>
-          <include name="Fnp_Plants_024"/>
-          <include name="Fnp_Plants_035"/>
-          <include name="Fnp_Plants_022"/>
-          <include name="FNP_FNP_Application_001"/>
-          <include name="Fnp_Plants_012"/>
+          <include name="test1"/>
+          <include name="beforetest"/>
+          <include name="Aftertest"/>
+          <include name="beforeMethod"/>
+          <include name="AfterMethod"/>
         </methods>
-      </class> <!-- fernsNPetals.TestSuites.Plants_TestSuite -->
+      </class> <!-- fernsNPetals.other.testsuite -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

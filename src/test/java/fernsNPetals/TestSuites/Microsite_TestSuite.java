@@ -231,6 +231,7 @@ public class Microsite_TestSuite extends TestBase {
 			} else
 				System.out.println("££££££££££££ Not Displed the payment Options on the Delivery details page");
 			logger.log(LogStatus.INFO, "micrositeTC_03 is passed");
+			CheckoutPage.deleteAddAndProductWithAddonFromCheckoutPage();
 		} catch (AssertionError e) {
 			logger.log(LogStatus.INFO, "micrositeTC_03 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
@@ -282,6 +283,7 @@ public class Microsite_TestSuite extends TestBase {
 //		14.Accept terms and conditions 
 			CheckoutPage.placeorder(driver);
 			logger.log(LogStatus.INFO, "micrositeTC_04 is passed");
+			CheckoutPage.deleteAddAndProductWithAddonFromCheckoutPage();
 		} catch (AssertionError e) {
 			logger.log(LogStatus.INFO, "micrositeTC_04 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);

@@ -67,7 +67,9 @@ public class TC_03 extends TestBase {
 				
 //				15.Enter area name and select delivery date
 				GiftPage.navigateToCart(driver);
+				Thread.sleep(2000);
 				GiftPage.sendkeys("searchaddressbox", "kondapur");
+				Thread.sleep(1000);
 				GiftPage.searchaddressbox.sendKeys(Keys.ENTER);
 				Assert.assertEquals((GiftPage.searchaddressbox.getAttribute("value")), "Kondapur, Hyderabad, Telangana, India");
 				System.out.println("Area name is displayed in the text field");
@@ -88,11 +90,13 @@ public class TC_03 extends TestBase {
 				GiftPage.click("addonbutton");
 //				18.Enter Email id on click on continue button
 				Thread.sleep(2000);
-				CheckoutPage.sendkeys("loginEmailID", prop.getProperty("mailID"));
-				CheckoutPage.click("continuebutton");
-//				19.Enter Password and click on continue button
-				CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
-				CheckoutPage.click("continuebutton");
+				CheckoutPage.loginFnP("Testasurnamea@gmail.com","Aleena@123");
+//				CheckoutPage.sendkeys("loginEmailID", prop.getProperty("mailID"));
+//				Thread.sleep(1000);
+//				CheckoutPage.click("continuebutton");
+////				19.Enter Password and click on continue button
+//				CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
+//				CheckoutPage.click("continuebutton");
 //				20.Click on Add new address and all details and click on save address
 				//CheckoutPage.click("addnewaddress");
 				CheckoutPage.filladdressToDelivery(driver, "chaya", "Madhapur", "9876543210", "", "test@gmail.com");
@@ -102,6 +106,7 @@ public class TC_03 extends TestBase {
 				CheckoutPage.placeorder(driver);
 				CheckoutPage.paymentOptionspage.isDisplayed();
 				System.out.println("Browser is navigate to Payment page");
+				CheckoutPage.deleteAddAndProductWithAddonFromCheckoutPage();
 //				
 //				1.It should displays the all selected filters in for the
 //				 Category page.
@@ -120,11 +125,11 @@ public class TC_03 extends TestBase {
 			      throw(e);
 			}
 			
-			finally {
-				 driver.quit();
-				 Runtime rt =Runtime.getRuntime();
-				 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
-			}
+//			finally {
+//				 driver.quit();
+//				 Runtime rt =Runtime.getRuntime();
+//				 Process proc = rt.exec("taskkill /im chrome.exe /f /t");
+//			}
 		}
 		
 

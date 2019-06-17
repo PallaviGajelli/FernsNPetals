@@ -27,7 +27,7 @@ public class ExtentReporterNG extends TestBase implements IReporter {
 	public static String reportLocation = "/FernsNPetals/ExtentReports"+ TimeStamp + ".html";
 //	extent.setSystemInfo("Tester Name", "Pallavi");
 //	extent.setSystemInfo("Website", "FernsNpetals");
-	
+	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
 			String outputDirectory) {
 //		extent = new ExtentReports(outputDirectory + File.separator

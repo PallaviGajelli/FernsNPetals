@@ -35,56 +35,50 @@ import fernsNPetals.util.TestUtil;
 //@Listeners(fernsNPetals.extentReportListener.ExtentReporterNG.class)
 public class All_filters_in_category_page_TestSuite extends TestBase {
 
-	static ExtentReports report;
 	static ExtentTest logger;
+	static ExtentReports report;
 	public static String extentReport;
 	public static String TimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())
 			.toString();
-
 	@BeforeTest
-	public void extent() {
+	public void FNP_FNP_Application_001() {
 		extentReport = "All_filters_in_category_page_TestSuite" + TimeStamp + ".html";
-		// prop.getProperty("ExtentReports")
 		report = new ExtentReports(extentReport);
-
-	}
-
-	@AfterTest
-	public void flushExtent() {
-		report.flush();
-	}
-
-	@BeforeMethod
-	public void Setup() throws Exception {
-
+		logger = report.startTest("FNP_FNP_Application_001");
+		logger.log(LogStatus.INFO, "FNP_FNP Application _001:");
 		long start = System.currentTimeMillis();
 //		1. Launch the FNP Application  in the browser
 		initialization();
 		long finish = System.currentTimeMillis();
 		long Total_Time = (finish - start) / 1000;
 		System.out.println("Page Load Time: " + Total_Time + " Seconds");
-
+		
 		if (Total_Time <= 3) {
-
+			logger.log(LogStatus.INFO, "Application is loading as per expected responce time");
 			System.err.println("Application is loading as per expected responce time");
-
+			logger.log(LogStatus.INFO, "Page Load Time: " + Total_Time);
 		} else {
-
+			logger.log(LogStatus.INFO, "Application is not loading as per expected responce time");
 			System.err.println("Application is not loading as per expected responce time");
-
+			logger.log(LogStatus.INFO, "Page Load Time: " + Total_Time);
 		}
-		System.out.println("Extent report path:" + extentReport);
-
+		logger.log(LogStatus.INFO, "FNP_FNP Application _001 is passed");
+		System.out.println("Extent report path:" +extentReport);
 	}
 
-	@AfterMethod
+	
+
+
+	@AfterTest
 	public void tearDown() throws IOException {
 		// Delete evrything so that test suite can be reusable next time.
-
+      report.flush();
 		driver.quit();
-		Runtime rt = Runtime.getRuntime();
-		Process proc = rt.exec("taskkill /im chrome.exe /f /t");
+//		Runtime rt = Runtime.getRuntime();
+//		Process proc = rt.exec("taskkill /im chrome.exe /f /t");
 	}
+
+	
 
 	@Test(priority = 1)
 	public void All_filters_in_category_pageTC_01() throws InterruptedException, IOException {
@@ -107,7 +101,7 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 
 			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_01 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_01 is failed");
+			logger.log(LogStatus.FAIL, "All_filters_in_category_pageTC_01 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
@@ -124,12 +118,10 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 			FlowersPage FlowersPage = new FlowersPage();
 			FlowersPage = PageFactory.initElements(driver, FlowersPage.getClass());
 
-//				2.Mouse over Anniversary link
-			HomePage.mouseHover("anniversarymenu");
-			FlowersPage.anniversary_flowers.click();
+
 //				3.Mouse over Gift type and select roses
-			FlowersPage.mouseHover("GiftTypeFlowers");
-			FlowersPage.Roses.click();
+//			FlowersPage.mouseHover("GiftTypeFlowers");
+//			FlowersPage.Roses.click();
 //				Note:Expected step1 has to be verified
 			//////////////////////////
 //				4.Mouse over Occasion link
@@ -163,8 +155,9 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 			System.out.println("It is display the selected cost the under the price link");
 
 			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_02 is passed");
+	
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_02 is failed");
+			logger.log(LogStatus.FAIL, "All_filters_in_category_pageTC_02 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
@@ -186,49 +179,23 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 			FlowersPage = PageFactory.initElements(driver, FlowersPage.getClass());
 			CheckoutPage CheckoutPage = new CheckoutPage();
 			CheckoutPage = PageFactory.initElements(driver, CheckoutPage.getClass());
-//			2.Mouse over Anniversary link
-			HomePage.mouseHover("anniversarymenu");
-			FlowersPage.anniversary_flowers.click();
-//			3.Mouse over Gift type link
-//			4.Click on Roses
-			FlowersPage.mouseHover("GiftTypeFlowers");
-			FlowersPage.Roses.click();
-//			5.Mouse over Occasion link
-			HomePage.mouseHover("occassionsmenu");
-			FlowersPage.AnniversaryUnderOccation.isDisplayed();
-			System.out.println("Anniversary Under Occation id displayed");
-//			6.Mouse over the Delivery city
-			FlowersPage.mouseHover("DeliveryCity");
-//			7.Click on Bangalore
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].click();", FlowersPage.Bangalore);
-			Assert.assertEquals((FlowersPage.DeliveryCity.getText()), "Delivery City\nBangalore");
-			System.out.println("It is displaying Selected city under Delivery city Link");
-//			8.Click on Recommended drop down
-			FlowersPage.recomendedDropDown.click();
-//			9.Click on price Low to High
-			FlowersPage.PriceLowtoHigh.click();
-//			10.Mouse over Price link
-			FlowersPage.mouseHover("PriceAnniversary");
-//			11.Click on 500+
-			FlowersPage.Price500Plus.click();
-			Thread.sleep(2000);
-			Assert.assertEquals((FlowersPage.PriceAnniversary.getText()), "Price\nGBP 5.81 +");
-			System.out.println("It is display the selected cost the under the price link");
-//			Note:Expected step1 has to be verified
-			//////////////////////
+
 //			14.select any product (EX:Elegance -Pink Rose Bouquet)
 			Thread.sleep(1000);
 			js.executeScript("arguments[0].click();", FlowersPage.ElegancePinkRosesBouquet);
 			
 //			15.Enter area name and select delivery date
 			GiftPage.navigateToCart(driver);
+			Thread.sleep(1000);
 			GiftPage.sendkeys("searchaddressbox", "kondapur");
+			Thread.sleep(1000);
 			GiftPage.searchaddressbox.sendKeys(Keys.ENTER);
+			Thread.sleep(1000);
 			Assert.assertEquals((GiftPage.searchaddressbox.getAttribute("value")), "Kondapur, Hyderabad, Telangana, India");
 			System.out.println("Area name is displayed in the text field");
 			//GiftPage.clickfirstAddressintheList(driver);
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			//GiftPage.click("SelectDeliveryDate");
 			//GiftPage.selectDayAfterTomorrow(driver);
 //			(Ex:select standard delivery date)
@@ -243,25 +210,26 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 			GiftPage.click("addoncheckbox");
 			GiftPage.click("addonbutton");
 //			18.Enter Email id on click on continue button
-			Thread.sleep(2000);
-			CheckoutPage.sendkeys("loginEmailID", prop.getProperty("mailID"));
-			CheckoutPage.click("continuebutton");
-//			19.Enter Password and click on continue button
-			CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
-			CheckoutPage.click("continuebutton");
+			Thread.sleep(3000);
+			CheckoutPage.loginFnP("Testasurnamea@gmail.com","Aleena@123");
+			Thread.sleep(3000);
 //			20.Click on Add new address and all details and click on save address
 			//CheckoutPage.click("addnewaddress");
 			CheckoutPage.filladdressToDelivery(driver, "chaya", "Madhapur", "9876543210", "", "test@gmail.com");
-			
+			Thread.sleep(2000);
 //			21.Accept terms and conditions 
 //			22.Click on Proceed to check out button
 			CheckoutPage.placeorder(driver);
 			CheckoutPage.paymentOptionspage.isDisplayed();
 			System.out.println("Browser is navigate to Payment page");
+			
+			CheckoutPage.deleteAddAndProductWithAddonFromCheckoutPage();
+			driver.quit();
+			
 		
 			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_03 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_03 is failed");
+			logger.log(LogStatus.FAIL, "All_filters_in_category_pageTC_03 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
@@ -273,6 +241,8 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 		try {
 			logger = report.startTest("TC_04:Verify user able to place a \r\n" + "order by selecting filters in \r\n"
 					+ "Category page With negative validations");
+//			1. Launch the FNP Application  in the browser
+			initialization();
 			HomePage HomePage = new HomePage();
 			HomePage = PageFactory.initElements(driver, HomePage.getClass());
 			GiftPage GiftPage = new GiftPage();
@@ -284,11 +254,11 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 //			2.Mouse over Anniversary link
 			HomePage.mouseHover("anniversarymenu");
 			FlowersPage.anniversary_flowers.click();
-//			3.Mouse over Gift type link
-			FlowersPage.mouseHover("GiftTypeFlowers");
-
-//			4.Click on Roses
-			FlowersPage.Roses.click();
+////			3.Mouse over Gift type link
+//			FlowersPage.mouseHover("GiftTypeFlowers");
+//			
+////			4.Click on Roses
+//			FlowersPage.Roses.click();
 //			5.Mouse over Occasion link
 			HomePage.mouseHover("occassionsmenu");
 			FlowersPage.AnniversaryUnderOccation.isDisplayed();
@@ -308,7 +278,7 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 			FlowersPage.mouseHover("PriceAnniversary");
 //			11.Click on 500+
 			FlowersPage.Price500Plus.click();
-
+			
 //			12.select any product (EX:Elegance -Pink Rose Bouquet)
 			Thread.sleep(1000);
 			js.executeScript("arguments[0].click();", FlowersPage.ElegancePinkRosesBouquet);
@@ -328,14 +298,11 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 			CheckoutPage.sendkeys("loginEmailID", "sdadfdaedQWD");
 			CheckoutPage.click("continuebutton");
 			CheckoutPage.verify("checklogin");
-			CheckoutPage.loginEmailID.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-			Thread.sleep(1000);
+			CheckoutPage.loginEmailID.sendKeys(Keys.chord(Keys.CONTROL,"a",Keys.DELETE));	 
+			  Thread.sleep(1000);
 //			Note:Expected step1 has to be verified
 //			17.Enter valid mail id and Password and click on continue button
-			CheckoutPage.sendkeys("loginEmailID", prop.getProperty("mailID"));
-			CheckoutPage.click("continuebutton");
-			CheckoutPage.sendkeys("pwd", prop.getProperty("pwd"));
-			CheckoutPage.click("continuebutton");
+			CheckoutPage.loginFnP("Testasurnamea@gmail.com","Aleena@123");
 			Thread.sleep(1000);
 //			18.Click on Add new address and leave the all fields empty and click on continue button
 			CheckoutPage.filladdressToDelivery(driver, "", "", "", "", "");
@@ -350,10 +317,12 @@ public class All_filters_in_category_page_TestSuite extends TestBase {
 			CheckoutPage.placeorder(driver);
 			CheckoutPage.paymentOptionspage.isDisplayed();
 			System.out.println("Browser is navigate to Payment page");
+			Thread.sleep(1000);
+			CheckoutPage.deleteAddAndProductWithoutaddonFromCheckout();
 
 			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_04 is passed");
 		} catch (Throwable e) {
-			logger.log(LogStatus.INFO, "All_filters_in_category_pageTC_04 is failed");
+			logger.log(LogStatus.FAIL, "All_filters_in_category_pageTC_04 is failed");
 			logger.log(LogStatus.INFO, "Screenshot is taken and saved at :" + TestUtil.Screenshotlocation);
 			logger.log(LogStatus.ERROR, "Exception occured is :" + e);
 			throw e;
